@@ -418,6 +418,47 @@ body {
 }
 
 /* ========================================
+   Iconos de Redes Sociales
+======================================== */
+.u-social-icons .u-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #f8f8f8;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.u-social-icons .u-icon:hover {
+  background-color: #333;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.u-social-icons .u-icon i {
+  font-size: 22px;
+}
+
+.u-social-facebook .u-icon:hover {
+  background-color: #3b5998;
+}
+
+.u-social-twitter .u-icon:hover {
+  background-color: #1da1f2;
+}
+
+.u-social-instagram .u-icon:hover {
+  background-color: #e1306c;
+}
+
+.u-social-custom .u-icon:hover {
+  background-color: #0077b5;
+}
+
+/* ========================================
    Fuente Personalizada
 ======================================== */
 @font-face {
