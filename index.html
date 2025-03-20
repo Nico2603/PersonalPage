@@ -18,17 +18,29 @@
     <script defer src="app.js"></script>
   </head>
   <body>
-    <!-- HEADER: Navbar Horizontal -->
+    <!-- HEADER: Nuevo Navbar con Dropdowns -->
     <header class="u-header" id="main-header">
       <div class="u-sheet">
         <nav class="navbar">
-          <!-- Si prefieres quitar el logo, puedes ocultarlo modificando la clase nav-logo -->
-          <a href="#inicio" class="nav-logo">Nicolás Ceballos Brito</a>
           <ul class="nav-menu">
             <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
-            <li class="nav-item"><a href="#labores" class="nav-link">Labores</a></li>
             <li class="nav-item"><a href="#portafolio" class="nav-link">Portafolio</a></li>
-            <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+            <li class="nav-item dropdown">
+              <a href="#labores" class="nav-link">Labores ▾</a>
+              <div class="dropdown-content">
+                <a href="#eventos">Eventos Clave</a>
+                <a href="#logros">Logros</a>
+                <a href="#certificaciones">Certificaciones</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#contacto" class="nav-link">Contacto ▾</a>
+              <div class="dropdown-content">
+                <a href="mailto:nicolasceballosbrito@gmail.com">Email</a>
+                <a href="https://linkedin.com/in/nicolas-ceballos-brito" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Nico2603" target="_blank">GitHub</a>
+              </div>
+            </li>
           </ul>
         </nav>
       </div>
@@ -36,7 +48,7 @@
 
     <!-- CONTENIDO PRINCIPAL -->
     <main id="app">
-      <!-- Sección Inicio: Perfil -->
+      <!-- Sección Inicio: Perfil y Redes Sociales (presentación) -->
       <section id="inicio" class="u-section-1">
         <div class="u-image-1"></div>
         <h2 class="u-text-1">Nicolás Ceballos Brito</h2>
@@ -44,35 +56,54 @@
           Soy un apasionado estudiante de Ingeniería de Sistemas y Telecomunicaciones, especializado en desarrollo web con experiencia en JavaScript, React, Angular, C++ y Java. Mi pasión por la inteligencia artificial y la innovación me impulsa a crear soluciones disruptivas.
         </p>
         <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" class="u-btn-1">Ver más</a>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com/NicolasCBrito" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/nico_ceballos26/" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <div class="social-section">
+          <a href="#contacto" class="u-btn-1">Contáctame</a>
+          <div class="social-icons-presentation">
+            <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/NicolasCBrito" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/nico_ceballos26/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
       </section>
 
-      <!-- Sección Labores Destacadas -->
-      <section id="labores" class="u-section-2">
+      <!-- Sección unificada: Trayectoria Profesional (Labores y Eventos) -->
+      <section id="labores" class="u-section-labores">
         <div class="u-sheet-1">
-          <h2 class="u-text-1">Labores Destacadas</h2>
-          <p class="u-text-2">
-            A lo largo de mi trayectoria he participado en proyectos y eventos que han potenciado mi crecimiento profesional. ¡Descubre mis experiencias más relevantes!
-          </p>
-        </div>
-      </section>
-
-      <!-- Sección Carrusel de Eventos -->
-      <section id="eventos" class="u-section-3">
-        <div class="carousel-container">
-          <div class="carousel-slide" style="background-image: url('images/p1.jpg')"></div>
-          <div class="carousel-slide" style="background-image: url('images/p2.jpg')"></div>
-          <div class="carousel-slide" style="background-image: url('images/p3.jpg')"></div>
-          <div class="carousel-slide" style="background-image: url('images/p4.jpg')"></div>
-          <div class="carousel-content">
-            <h2 class="u-text-1">Eventos Destacados</h2>
-            <p class="u-text-2">Explora mis principales logros y participaciones</p>
-            <a href="#contacto" class="u-btn-1">Conoce más</a>
+          <h2 class="u-text-1">Trayectoria Profesional</h2>
+          <div class="carousel-container">
+            <div class="carousel-slide" data-link="#">
+              <div class="carousel-content">
+                <h3>Proyecto Destacado 1</h3>
+                <p>Descripción breve del proyecto o evento</p>
+                <a href="#" class="u-btn-1">Ver Detalles</a>
+              </div>
+              <img src="images/p1.jpg" alt="Evento 1">
+            </div>
+            <div class="carousel-slide" data-link="#">
+              <div class="carousel-content">
+                <h3>Proyecto Destacado 2</h3>
+                <p>Descripción breve del proyecto o evento</p>
+                <a href="#" class="u-btn-1">Ver Detalles</a>
+              </div>
+              <img src="images/p2.jpg" alt="Evento 2">
+            </div>
+            <div class="carousel-slide" data-link="#">
+              <div class="carousel-content">
+                <h3>Proyecto Destacado 3</h3>
+                <p>Descripción breve del proyecto o evento</p>
+                <a href="#" class="u-btn-1">Ver Detalles</a>
+              </div>
+              <img src="images/p3.jpg" alt="Evento 3">
+            </div>
+            <div class="carousel-slide" data-link="#">
+              <div class="carousel-content">
+                <h3>Proyecto Destacado 4</h3>
+                <p>Descripción breve del proyecto o evento</p>
+                <a href="#" class="u-btn-1">Ver Detalles</a>
+              </div>
+              <img src="images/p4.jpg" alt="Evento 4">
+            </div>
           </div>
         </div>
       </section>

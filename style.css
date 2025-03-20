@@ -57,7 +57,7 @@ body {
 }
 
 /* ========================================
-   Navbar Horizontal (sin logo y centrado)
+   Navbar Horizontal (con Dropdowns)
 ======================================== */
 header#main-header {
   background: #fff;
@@ -77,14 +77,15 @@ header#main-header .u-sheet {
   padding: 10px 20px;
 }
 
+/* Se elimina el logo (opcional) */
 .nav-logo {
-  display: none; /* Se oculta el logo */
+  display: none;
 }
 
 .nav-menu {
   list-style: none;
   display: flex;
-  gap: 40px; /* Más espacio entre items */
+  gap: 40px; /* Más espacio entre ítems */
   padding: 0 20px;
 }
 
@@ -99,7 +100,31 @@ header#main-header .u-sheet {
   color: var(--accent-color);
 }
 
-/* Social Icons en el header */
+/* Dropdown en Navbar */
+.nav-item.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 180px;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+}
+
+.nav-item.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* ========================================
+   Social Icons en el Header (se han movido en parte a la sección Inicio)
+======================================== */
 .social-icons {
   display: flex;
   gap: 10px;
@@ -125,14 +150,14 @@ header#main-header .u-sheet {
 
 /* ========================================
    Ajuste para contenido principal
-   (Se agrega padding-top para compensar el navbar fijo)
+   (Padding-top para compensar el navbar fijo)
 ======================================== */
 main#app {
   padding-top: 100px;
 }
 
 /* ========================================
-   Sección 1: Inicio / Perfil
+   Sección 1: Inicio / Perfil (Rediseño)
 ======================================== */
 .u-section-1 {
   min-height: 993px;
@@ -143,10 +168,10 @@ main#app {
 }
 
 .u-section-1 .u-image-1 {
-  width: 422px;
-  height: 422px;
+  width: 280px; /* Ajuste de tamaño */
+  height: 280px;
   background: url("images/pic.jpg") center/cover no-repeat;
-  margin: 0 auto 20px;
+  margin: 50px auto 20px;
   border-radius: 50%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -155,27 +180,29 @@ main#app {
   text-transform: uppercase;
   font-weight: 300;
   letter-spacing: 4px;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 2rem; /* Tamaño reducido */
   max-width: 677px;
-  margin: 20px auto;
+  margin: 25px auto;
   color: var(--text-color);
 }
 
 .u-section-1 .u-text-2 {
-  max-width: 677px;
+  max-width: 600px;
   margin: 20px auto;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: #555;
 }
 
 .u-section-1 .u-btn-1 {
+  padding: 10px 25px;
+  font-size: 0.9rem;
   background: none;
   border: 2px solid var(--primary-color);
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 2px;
   margin: 30px auto;
-  padding: 12px 28px;
   cursor: pointer;
   color: var(--primary-color);
   transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
@@ -183,6 +210,37 @@ main#app {
 }
 
 .u-section-1 .u-btn-1:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* Social Icons en Sección Inicio (Presentación) */
+.social-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.social-icons-presentation {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.social-icons-presentation a {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.social-icons-presentation a:hover {
   background: var(--primary-color);
   color: #fff;
 }
@@ -246,7 +304,7 @@ main#app {
   justify-content: center;
 }
 
-/* Carrusel: contenedor y slides */
+/* Carrusel: Contenedor y Slides */
 .carousel-container {
   position: relative;
   height: 500px;
@@ -279,6 +337,7 @@ main#app {
   padding: 20px;
 }
 
+/* Tipografía en sección 3 */
 .u-section-3 .u-text-1 {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 600;
@@ -424,7 +483,7 @@ main#app {
   color: #fff;
 }
 
-/* Estilos para la sección de métodos de contacto extra */
+/* Métodos de contacto extra */
 .contact-methods p {
   margin: 15px 0;
   font-size: 1rem;
