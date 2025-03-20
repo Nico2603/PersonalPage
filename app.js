@@ -22,7 +22,7 @@ const routes = {
   // Función para cargar el portafolio desde la API de GitHub
   function loadGithubPortfolio() {
     const username = "TU_USUARIO_GITHUB"; // Actualiza con tu nombre de usuario de GitHub
-    const apiURL = `https://api.github.com/users/${Nico2603}/repos`;
+    const apiURL = `https://api.github.com/users/Nico2603/repos`;
     
     fetch(apiURL)
       .then(response => response.json())
