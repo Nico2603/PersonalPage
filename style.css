@@ -432,7 +432,7 @@ main#app {
   src: url(fonts/SegoeUI.ttf) format("truetype");
 }
 
-/* Estilos para el menú hamburguesa (en caso de usarse en móvil) */
+/* Estilos para el menú hamburguesa (móvil) */
 .u-menu-icon {
   width: 24px;
   height: 24px;
@@ -455,4 +455,17 @@ main#app {
 /* Ajuste del overlay en el menú móvil */
 .u-black.u-menu-overlay {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   Secciones a ancho completo
+   (Forzar que cada sección ocupe el 100% del viewport sin márgenes laterales)
+======================================== */
+.u-section-1, 
+.u-section-2, 
+.u-section-3, 
+.u-section-portfolio, 
+.u-section-4 {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
