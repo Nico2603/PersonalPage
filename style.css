@@ -18,7 +18,7 @@
   --tertiary-color: #eafdfc;
   --bg-gradient-section1: linear-gradient(180deg, var(--secondary-color), var(--tertiary-color));
   --text-shadow-default: 2px 2px 8px rgba(0, 0, 0, 0.1);
-  --font-primary: 'SegoeUI', sans-serif;
+  --font-primary: 'Poppins', sans-serif; /* Actualizado a Poppins */
   --transition-speed: 0.4s;
 }
 
@@ -59,7 +59,7 @@ body {
 ======================================== */
 header#main-header {
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   width: 100%;
@@ -252,6 +252,7 @@ main#app {
   justify-content: center;
 }
 
+/* Ejemplo: Usando .u-section-3-1 para el carrusel */
 .u-section-3-1 {
   background-image: linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('images/p1.jpg');
 }
@@ -460,7 +461,7 @@ main#app {
 /* ========================================
    Secciones a ancho completo
    (Forzar que cada sección ocupe el 100% del viewport sin márgenes laterales)
-======================================== 
+======================================== */
 .u-section-1, 
 .u-section-2, 
 .u-section-3, 
@@ -469,4 +470,3 @@ main#app {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
 }
-*/

@@ -1,5 +1,3 @@
-// app.js
-
 // Función para cargar el portafolio desde la API de GitHub
 function loadGithubPortfolio() {
   const username = "Nico2603"; // Actualiza con tu nombre de usuario de GitHub
@@ -40,7 +38,62 @@ function initSmoothScroll() {
   });
 }
 
+// Función para aplicar animaciones suaves en cada sección mediante IntersectionObserver
+function initSPA() {
+  const sections = document.querySelectorAll("section");
+  const observerOptions = {
+    threshold: 0.3
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => observer.observe(section));
+}
+
+// Función para iniciar un carrusel automático (si existe un contenedor de carrusel)
+function initCarousel() {
+  const carouselContainer = document.querySelector('.carousel-container');
+  if (!carouselContainer) return;
+  
+  const carouselSlides = carouselContainer.querySelectorAll('.carousel-slide');
+  let currentSlide = 0;
+  
+  // Función para mostrar el slide indicado
+  function showSlide(index) {
+    carouselSlides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+  }
+  
+  // Función para avanzar al siguiente slide
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % carouselSlides.length;
+    showSlide(currentSlide);
+  }
+  
+  // Inicia el intervalo para el carrusel (cada 7 segundos)
+  let carouselInterval = setInterval(nextSlide, 7000);
+  
+  // Pausa el carrusel al hacer hover y reanuda al quitarlo
+  carouselContainer.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+  carouselContainer.addEventListener('mouseleave', () => {
+    carouselInterval = setInterval(nextSlide, 7000);
+  });
+  
+  // Muestra el primer slide inicialmente
+  showSlide(currentSlide);
+}
+
+// Iniciar todas las funciones cuando el DOM esté cargado
 document.addEventListener("DOMContentLoaded", () => {
   loadGithubPortfolio();
   initSmoothScroll();
+  initSPA();
+  initCarousel();
 });
