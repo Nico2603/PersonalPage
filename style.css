@@ -426,3 +426,28 @@ body {
   font-weight: 400;
   src: url(fonts/SegoeUI.ttf) format("truetype");
 }
+
+/* Estilos para el menú hamburguesa */
+.u-menu-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.u-button-style.u-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.u-button-style.u-nav-link:hover .u-menu-icon {
+  color: var(--primary-color);
+}
+
+/* Asegurarse que el menú móvil tenga el color correcto */
+.u-black.u-menu-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
