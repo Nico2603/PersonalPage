@@ -13,12 +13,14 @@
    Variables Globales
 ======================================== */
 :root {
-  --primary-color: #478ac9;
-  --secondary-color: #adf6f2;
+  --primary-color: #2A5C82;   /* Azul profesional */
+  --secondary-color: #5DA399; /* Verde azulado */
+  --accent-color: #FF7B54;    /* Naranja coral */
   --tertiary-color: #eafdfc;
   --bg-gradient-section1: linear-gradient(180deg, var(--secondary-color), var(--tertiary-color));
+  --text-color: #3A3A3A;
   --text-shadow-default: 2px 2px 8px rgba(0, 0, 0, 0.1);
-  --font-primary: 'Poppins', sans-serif; /* Actualizado a Poppins */
+  --font-primary: 'Poppins', sans-serif; /* Fuente moderna */
   --transition-speed: 0.4s;
 }
 
@@ -29,7 +31,7 @@ body {
   font-family: var(--font-primary);
   line-height: 1.6;
   background: #fff;
-  color: #333;
+  color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -55,11 +57,11 @@ body {
 }
 
 /* ========================================
-   Navbar Horizontal
+   Navbar Horizontal (sin logo y centrado)
 ======================================== */
 header#main-header {
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: fixed;
   top: 0;
   width: 100%;
@@ -69,40 +71,32 @@ header#main-header {
 header#main-header .u-sheet {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* Centra el menú */
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px 20px;
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
 .nav-logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--primary-color);
-  text-decoration: none;
+  display: none; /* Se oculta el logo */
 }
 
 .nav-menu {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 40px; /* Más espacio entre items */
+  padding: 0 20px;
 }
 
 .nav-menu .nav-link {
   text-decoration: none;
-  color: #333;
+  color: var(--text-color);
   font-size: 1rem;
   transition: color var(--transition-speed) ease;
 }
 
 .nav-menu .nav-link:hover {
-  color: var(--primary-color);
+  color: var(--accent-color);
 }
 
 /* Social Icons en el header */
@@ -117,7 +111,7 @@ header#main-header .u-sheet {
   justify-content: center;
   width: 40px;
   height: 40px;
-  color: #333;
+  color: var(--text-color);
   border-radius: 50%;
   background: #f8f8f8;
   transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
@@ -131,7 +125,7 @@ header#main-header .u-sheet {
 
 /* ========================================
    Ajuste para contenido principal
-   (se agrega padding-top para compensar el navbar fijo)
+   (Se agrega padding-top para compensar el navbar fijo)
 ======================================== */
 main#app {
   padding-top: 100px;
@@ -164,7 +158,7 @@ main#app {
   font-size: clamp(2rem, 5vw, 3rem);
   max-width: 677px;
   margin: 20px auto;
-  color: #333;
+  color: var(--text-color);
 }
 
 .u-section-1 .u-text-2 {
@@ -224,7 +218,7 @@ main#app {
 .u-section-2 .u-text-1 {
   font-size: clamp(2rem, 5vw, 3.125rem);
   margin: 30px 0 0;
-  color: #333;
+  color: var(--text-color);
 }
 
 .u-section-2 .u-text-2 {
@@ -234,7 +228,7 @@ main#app {
 }
 
 /* ========================================
-   Sección 3: Eventos Destacados (Carrusel Placeholder)
+   Sección 3: Eventos Destacados (Carrusel)
 ======================================== */
 .u-section-3 {
   position: relative;
@@ -252,9 +246,37 @@ main#app {
   justify-content: center;
 }
 
-/* Ejemplo: Usando .u-section-3-1 para el carrusel */
-.u-section-3-1 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('images/p1.jpg');
+/* Carrusel: contenedor y slides */
+.carousel-container {
+  position: relative;
+  height: 500px;
+  margin: 40px 0;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding: 20px;
 }
 
 .u-section-3 .u-text-1 {
@@ -315,7 +337,7 @@ main#app {
 .u-section-portfolio .u-text-1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin: 30px 0 10px;
-  color: #333;
+  color: var(--text-color);
 }
 
 .u-section-portfolio .u-text-2 {
@@ -327,17 +349,19 @@ main#app {
 /* Grid para repositorios */
 .u-portfolio-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
   margin-top: 40px;
+  padding: 0 15px;
 }
 
 .u-portfolio-container .repo {
-  background: #f9f9f9;
+  background: #fff;
   padding: 20px;
   border: 1px solid #eaeaea;
   border-radius: 8px;
   transition: transform var(--transition-speed) ease;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.08);
 }
 
 .u-portfolio-container .repo:hover {
@@ -356,9 +380,11 @@ main#app {
 
 /* ========================================
    Sección 4: Contacto / CTA
+   (Nuevo fondo y elementos de contacto)
 ======================================== */
 .u-section-4 {
-  background: var(--bg-gradient-section1);
+  background: #f9fbfd; /* Fondo suave para contacto */
+  border-top: 1px solid #e8ecef;
   text-align: center;
   padding: 80px 20px;
 }
@@ -370,7 +396,7 @@ main#app {
 .u-section-4 .u-text-1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin: 30px 0 10px;
-  color: #333;
+  color: var(--text-color);
 }
 
 .u-section-4 .u-text-2 {
@@ -398,6 +424,31 @@ main#app {
   color: #fff;
 }
 
+/* Estilos para la sección de métodos de contacto extra */
+.contact-methods p {
+  margin: 15px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.social-icons-contact {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.social-icons-contact a {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  transition: color var(--transition-speed) ease;
+  text-decoration: none;
+}
+
+.social-icons-contact a:hover {
+  color: var(--accent-color);
+}
+
 /* ========================================
    Iconos de Redes Sociales (Extra)
 ======================================== */
@@ -421,6 +472,14 @@ main#app {
 
 .u-social-icons .u-icon i {
   font-size: 22px;
+}
+
+/* ========================================
+   Footer Centrado
+======================================== */
+.u-footer {
+  text-align: center;
+  padding: 20px;
 }
 
 /* ========================================
@@ -469,4 +528,39 @@ main#app {
 .u-section-4 {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
+}
+
+/* ========================================
+   Carrusel: Contenedor y Slides
+======================================== */
+.carousel-container {
+  position: relative;
+  height: 500px;
+  margin: 40px 0;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding: 20px;
 }
