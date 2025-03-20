@@ -460,7 +460,7 @@ main#app {
 /* ========================================
    Secciones a ancho completo
    (Forzar que cada sección ocupe el 100% del viewport sin márgenes laterales)
-======================================== */
+======================================== 
 .u-section-1, 
 .u-section-2, 
 .u-section-3, 
@@ -469,3 +469,4 @@ main#app {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
 }
+*/
