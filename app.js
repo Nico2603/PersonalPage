@@ -141,6 +141,68 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     `;
     document.head.appendChild(styleElement);
+    
+    // Funcionalidad del menú móvil
+    // Seleccionar elementos
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Función para alternar el menú móvil
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+      });
+    }
+    
+    // Manejar dropdowns en móvil
+    dropdownItems.forEach(item => {
+      const link = item.querySelector('.nav-link');
+      
+      if (window.innerWidth <= 576) {
+        link.addEventListener('click', function(e) {
+          // Prevenir navegación si es en móvil
+          if (window.innerWidth <= 576) {
+            e.preventDefault();
+          }
+          
+          // Cerrar todos los otros dropdowns
+          dropdownItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('active');
+            }
+          });
+          
+          // Alternar el dropdown actual
+          item.classList.toggle('active');
+        });
+      }
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 576 && !link.parentElement.classList.contains('dropdown')) {
+          menuToggle.classList.remove('active');
+          navMenu.classList.remove('active');
+          document.body.classList.remove('menu-open');
+        }
+      });
+    });
+    
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function(e) {
+      if (navMenu.classList.contains('active') && 
+          !navMenu.contains(e.target) && 
+          !menuToggle.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      }
+    });
 });
 
 // Función para inicializar el carrusel
