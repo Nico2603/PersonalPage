@@ -164,11 +164,7 @@ function initCarousel() {
         // Mostrar la nueva diapositiva
         slides[currentSlide].classList.add('active');
         
-        // Actualizar URL con el hash del proyecto actual
-        const projectId = slides[currentSlide].id;
-        if (projectId) {
-            history.replaceState(null, null, '#' + projectId);
-        }
+        // Eliminamos la actualización de URL para que no afecte la navegación
     }, 5000);
     
     // Añadir navegación manual para el carrusel
@@ -209,11 +205,7 @@ function initCarousel() {
         // Mostrar la nueva diapositiva
         slides[currentSlide].classList.add('active');
         
-        // Actualizar URL con el hash del proyecto actual
-        const projectId = slides[currentSlide].id;
-        if (projectId) {
-            history.replaceState(null, null, '#' + projectId);
-        }
+        // Eliminamos la actualización de URL para evitar cambios en la navegación
     };
     
     // Manejar los enlaces directos a proyectos
@@ -262,11 +254,21 @@ function initViewMoreRepos() {
   
   if (viewMoreBtn && reposContainer) {
     viewMoreBtn.addEventListener('click', function() {
-      if (reposContainer.style.display === 'none') {
+      if (!reposContainer.classList.contains('visible')) {
+        // Mostrar repositorios con animación
         reposContainer.style.display = 'grid';
+        // Pequeño delay para asegurar que display:grid esté aplicado primero
+        setTimeout(() => {
+          reposContainer.classList.add('visible');
+        }, 10);
         viewMoreBtn.textContent = 'Ocultar repositorios adicionales';
       } else {
-        reposContainer.style.display = 'none';
+        // Ocultar repositorios con animación
+        reposContainer.classList.remove('visible');
+        // Esperar a que termine la animación antes de ocultarlo completamente
+        setTimeout(() => {
+          reposContainer.style.display = 'none';
+        }, 400); // Tiempo igual a la duración de la transición de opacidad
         viewMoreBtn.textContent = 'Ver todos los repositorios';
       }
     });
