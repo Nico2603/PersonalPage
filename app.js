@@ -142,17 +142,105 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(styleElement);
     
-    // Inicializar el menú móvil y hacer que funcione siempre
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
-    const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+    // Inicializar el menú móvil mejorado
+    adjustMobileView();
+    window.addEventListener('resize', adjustMobileView);
     
-    // Hacer que el botón del menú hamburguesa funcione siempre
+    // Función para ajustar la vista móvil
+    function adjustMobileView() {
+      const isSmallScreen = window.innerWidth <= 768;
+      const isMobile = window.innerWidth <= 576;
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
+      const navItems = document.querySelectorAll('.nav-menu .nav-item');
+      
+      // Mantener visible el enlace de "Inicio" y el título en pantallas pequeñas
+      if (isSmallScreen && navItems.length > 0) {
+        // Asegurar que el primer elemento (Inicio) permanezca visible
+        navItems[0].style.display = 'inline-block';
+        
+        // Hacer que los demás elementos se muestren solo cuando el menú está activo
+        for (let i = 1; i < navItems.length; i++) {
+          navItems[i].style.display = navMenu.classList.contains('active') ? 'block' : 'none';
+        }
+      } else {
+        // En pantallas grandes, mostrar todos los elementos de navegación
+        navItems.forEach(item => {
+          item.style.display = '';
+        });
+      }
+      
+      // Ajustar la altura de la sección "Labores Destacadas" para móvil
+      const carouselContainers = document.querySelectorAll('.carousel-container');
+      carouselContainers.forEach(container => {
+        if (isSmallScreen) {
+          // En móvil, asegurar que haya espacio suficiente para el contenido
+          container.style.minHeight = isMobile ? '480px' : '480px';
+          
+          // Ajustar la altura del contenido de texto
+          const contentElements = container.querySelectorAll('.carousel-content');
+          contentElements.forEach(content => {
+            // En móvil, dar mucho más espacio al contenido
+            content.style.minHeight = isMobile ? '300px' : '230px';
+            content.style.maxHeight = isMobile ? '300px' : '230px';
+            
+            // Asegurar que los botones sean visibles
+            const buttons = content.querySelectorAll('.u-btn-1');
+            buttons.forEach(button => {
+              if (isMobile) {
+                button.style.display = 'block';
+                button.style.margin = '15px auto 5px';
+                button.style.position = 'relative';
+                button.style.zIndex = '10';
+              } else {
+                button.style.display = '';
+                button.style.margin = '';
+                button.style.position = '';
+                button.style.zIndex = '';
+              }
+            });
+          });
+        } else {
+          // En pantallas grandes, usar los valores del CSS
+          container.style.minHeight = '';
+          const contentElements = container.querySelectorAll('.carousel-content');
+          contentElements.forEach(content => {
+            content.style.minHeight = '';
+            content.style.maxHeight = '';
+            
+            // Restaurar estilos de botones
+            const buttons = content.querySelectorAll('.u-btn-1');
+            buttons.forEach(button => {
+              button.style.display = '';
+              button.style.margin = '';
+              button.style.position = '';
+              button.style.zIndex = '';
+            });
+          });
+        }
+      });
+      
+      // Ajustar espacio entre secciones y footer en móvil
+      if (isMobile) {
+        const footer = document.querySelector('.u-footer');
+        const lastSection = document.querySelector('.u-section-4');
+        
+        if (footer && lastSection) {
+          lastSection.style.paddingBottom = '100px';
+          footer.style.marginTop = '60px';
+        }
+      }
+    }
+    
+    // Mejorar el manejo del botón de hamburguesa y su interacción
+    const menuToggle = document.getElementById('menuToggle');
     if (menuToggle) {
       menuToggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
         toggleMobileMenu();
+        // Actualizar la visualización después de cambiar el estado del menú
+        adjustMobileView();
       });
     }
     
@@ -163,6 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Manejar dropdowns en móvil - corregido para funcionar en cualquier tamaño de pantalla
+    const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
     dropdownItems.forEach(item => {
       const link = item.querySelector('.nav-link');
       
