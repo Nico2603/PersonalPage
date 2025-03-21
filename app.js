@@ -142,34 +142,36 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(styleElement);
     
-    // Funcionalidad del menú móvil
-    // Seleccionar elementos
+    // Inicializar el menú móvil y hacer que funcione siempre
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
-    const navLinks = document.querySelectorAll('.nav-link');
     
-    // Función para alternar el menú móvil
+    // Hacer que el botón del menú hamburguesa funcione siempre
     if (menuToggle) {
-      menuToggle.addEventListener('click', function() {
-        menuToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
+      menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMobileMenu();
       });
     }
     
-    // Manejar dropdowns en móvil
+    function toggleMobileMenu() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    }
+    
+    // Manejar dropdowns en móvil - corregido para funcionar en cualquier tamaño de pantalla
     dropdownItems.forEach(item => {
       const link = item.querySelector('.nav-link');
       
-      if (window.innerWidth <= 576) {
-        link.addEventListener('click', function(e) {
-          // Prevenir navegación si es en móvil
-          if (window.innerWidth <= 576) {
-            e.preventDefault();
-          }
+      link.addEventListener('click', function(e) {
+        // En móvil, el clic en dropdown solo despliega el menú en vez de navegar
+        if (window.innerWidth <= 576) {
+          e.preventDefault();
           
-          // Cerrar todos los otros dropdowns
+          // Cerrar otros dropdowns
           dropdownItems.forEach(otherItem => {
             if (otherItem !== item) {
               otherItem.classList.remove('active');
@@ -178,17 +180,32 @@ document.addEventListener('DOMContentLoaded', function() {
           
           // Alternar el dropdown actual
           item.classList.toggle('active');
-        });
-      }
+        }
+      });
     });
     
-    // Cerrar menú al hacer clic en un enlace
-    navLinks.forEach(link => {
+    // Manejar clics en enlaces dentro de dropdowns
+    document.querySelectorAll('.dropdown-content a').forEach(link => {
       link.addEventListener('click', function() {
-        if (window.innerWidth <= 576 && !link.parentElement.classList.contains('dropdown')) {
-          menuToggle.classList.remove('active');
-          navMenu.classList.remove('active');
-          document.body.classList.remove('menu-open');
+        if (window.innerWidth <= 576) {
+          setTimeout(() => {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+          }, 300);
+        }
+      });
+    });
+    
+    // Cerrar menú al hacer clic en enlaces directos (no dropdown)
+    document.querySelectorAll('.nav-item:not(.dropdown) .nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 576) {
+          setTimeout(() => {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+          }, 300);
         }
       });
     });
@@ -198,9 +215,37 @@ document.addEventListener('DOMContentLoaded', function() {
       if (navMenu.classList.contains('active') && 
           !navMenu.contains(e.target) && 
           !menuToggle.contains(e.target)) {
-        menuToggle.classList.remove('active');
         navMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
         document.body.classList.remove('menu-open');
+      }
+    });
+    
+    // Ajustar altura de elementos en móvil para mejorar visualización
+    function adjustMobileHeights() {
+      if (window.innerWidth <= 576) {
+        const carouselSlides = document.querySelectorAll('.carousel-slide');
+        carouselSlides.forEach(slide => {
+          const img = slide.querySelector('img');
+          const content = slide.querySelector('.carousel-content');
+          if (img && content) {
+            // Asegurar que la altura del contenido se ajuste según la cantidad de texto
+            content.style.height = 'auto';
+            content.style.minHeight = '180px'; 
+          }
+        });
+      }
+    }
+    
+    // Llamar ajuste al cargar y cuando cambie el tamaño de ventana
+    adjustMobileHeights();
+    window.addEventListener('resize', adjustMobileHeights);
+    
+    // Verificación adicional del menú móvil después de carga completa
+    window.addEventListener('load', function() {
+      // Forzar visibilidad del menú hamburguesa en móvil
+      if (window.innerWidth <= 576 && menuToggle) {
+        menuToggle.style.display = 'block';
       }
     });
 });
