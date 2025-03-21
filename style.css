@@ -77,7 +77,7 @@ header#main-header .u-sheet {
   padding: 10px 20px;
 }
 
-/* Se elimina el logo (opcional) */
+/* Se oculta el logo (opcional) */
 .nav-logo {
   display: none;
 }
@@ -111,19 +111,55 @@ header#main-header .u-sheet {
   background: #fff;
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
   border-radius: 8px;
-  padding: 10px;
+  padding: 10px 0;
   min-width: 180px;
   top: 100%;
   left: 0;
   z-index: 10;
 }
 
+.dropdown-content a {
+  display: block;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
 .nav-item.dropdown:hover .dropdown-content {
   display: block;
 }
 
+/* Dropdown para Portafolio */
+.dropdown-content-portfolio {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.dropdown-content-portfolio a {
+  display: inline-block;
+  margin: 5px 10px;
+  padding: 8px 16px;
+  background: var(--secondary-color);
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.dropdown-content-portfolio a:hover {
+  background: var(--accent-color);
+}
+
 /* ========================================
-   Social Icons en el Header (se han movido en parte a la sección Inicio)
+   Social Icons en el Header
 ======================================== */
 .social-icons {
   display: flex;
@@ -215,11 +251,6 @@ main#app {
 }
 
 /* Social Icons en Sección Inicio (Presentación) */
-.social-section {
-  text-align: center;
-  margin-top: 30px;
-}
-
 .social-icons-presentation {
   display: flex;
   justify-content: center;
@@ -337,7 +368,7 @@ main#app {
   padding: 20px;
 }
 
-/* Tipografía en sección 3 */
+/* Tipografía en Sección 3 */
 .u-section-3 .u-text-1 {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 600;
@@ -403,6 +434,28 @@ main#app {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   margin: 10px 0 30px;
   color: #666;
+}
+
+/* Dropdown en Sección Portafolio */
+.dropdown-content-portfolio {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.dropdown-content-portfolio a {
+  display: inline-block;
+  margin: 5px 10px;
+  padding: 8px 16px;
+  background: var(--secondary-color);
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.dropdown-content-portfolio a:hover {
+  background: var(--accent-color);
 }
 
 /* Grid para repositorios */

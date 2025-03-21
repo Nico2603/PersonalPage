@@ -24,7 +24,15 @@
         <nav class="navbar">
           <ul class="nav-menu">
             <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
-            <li class="nav-item"><a href="#portafolio" class="nav-link">Portafolio</a></li>
+            <li class="nav-item dropdown">
+              <a href="#portafolio" class="nav-link">Portafolio ▾</a>
+              <div class="dropdown-content">
+                <a href="https://github.com/Nico2603/Project1" target="_blank">Proyecto 1</a>
+                <a href="https://github.com/Nico2603/Project2" target="_blank">Proyecto 2</a>
+                <a href="https://github.com/Nico2603/Project3" target="_blank">Proyecto 3</a>
+                <a href="https://github.com/Nico2603/Project4" target="_blank">Proyecto 4</a>
+              </div>
+            </li>
             <li class="nav-item dropdown">
               <a href="#labores" class="nav-link">Labores ▾</a>
               <div class="dropdown-content">
@@ -48,7 +56,7 @@
 
     <!-- CONTENIDO PRINCIPAL -->
     <main id="app">
-      <!-- Sección Inicio: Perfil y Redes Sociales (presentación) -->
+      <!-- Sección Inicio: Perfil y Redes Sociales -->
       <section id="inicio" class="u-section-1">
         <div class="u-image-1"></div>
         <h2 class="u-text-1">Nicolás Ceballos Brito</h2>
@@ -56,14 +64,12 @@
           Soy un apasionado estudiante de Ingeniería de Sistemas y Telecomunicaciones, especializado en desarrollo web con experiencia en JavaScript, React, Angular, C++ y Java. Mi pasión por la inteligencia artificial y la innovación me impulsa a crear soluciones disruptivas.
         </p>
         <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" class="u-btn-1">Ver más</a>
-        <div class="social-section">
-          <a href="#contacto" class="u-btn-1">Contáctame</a>
-          <div class="social-icons-presentation">
-            <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/NicolasCBrito" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/nico_ceballos26/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          </div>
+        <!-- Solo se muestran los íconos de redes sociales debajo -->
+        <div class="social-icons-presentation">
+          <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/NicolasCBrito" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/nico_ceballos26/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </section>
 
@@ -108,13 +114,19 @@
         </div>
       </section>
 
-      <!-- Sección Portafolio GitHub -->
+      <!-- Sección Portafolio GitHub con Dropdown -->
       <section id="portafolio" class="u-section-portfolio">
         <div class="u-sheet-1">
           <h2 class="u-text-1">Portafolio GitHub</h2>
           <p class="u-text-2">
-            Explora mis proyectos en GitHub y descubre cómo aplico la tecnología para resolver desafíos reales. Haz clic en cada proyecto para ver detalles.
+            Explora mis proyectos en GitHub y descubre cómo aplico la tecnología para resolver desafíos reales.
           </p>
+          <div class="dropdown-content-portfolio">
+            <a href="https://github.com/Nico2603/Project1" target="_blank">Proyecto 1</a>
+            <a href="https://github.com/Nico2603/Project2" target="_blank">Proyecto 2</a>
+            <a href="https://github.com/Nico2603/Project3" target="_blank">Proyecto 3</a>
+            <a href="https://github.com/Nico2603/Project4" target="_blank">Proyecto 4</a>
+          </div>
           <div id="github-portfolio" class="u-portfolio-container">
             <!-- Aquí se cargarán dinámicamente los repositorios -->
           </div>
