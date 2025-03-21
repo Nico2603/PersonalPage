@@ -1,5 +1,5 @@
 /* ========================================
-   CSS Reset básico
+   CSS Reset bÃ¡sico
 ======================================== */
 *,
 *::before,
@@ -10,7 +10,7 @@
 }
 
 /* ========================================
-   Variables Globales
+   Variables Globales - Volviendo a los valores originales
 ======================================== */
 :root {
   --primary-color: #2A5C82;   /* Azul profesional */
@@ -18,7 +18,7 @@
   --accent-color: #4FBDBA;    /* Azul turquesa, cambiado del naranja */
   --tertiary-color: #eafdfc;
   --bg-gradient-section1: linear-gradient(180deg, var(--secondary-color), var(--tertiary-color));
-  --bg-gradient-general: linear-gradient(180deg, #f0f8ff, #e6f7f5); /* Degradado general azul-verde claro */
+  --bg-gradient-general: linear-gradient(180deg, #f0f8ff, #e6f7f5); /* Volviendo al degradado general original */
   --text-color: #3A3A3A;
   --text-shadow-default: 2px 2px 8px rgba(0, 0, 0, 0.1);
   --font-primary: 'Poppins', sans-serif; /* Fuente moderna */
@@ -31,7 +31,7 @@
 body {
   font-family: var(--font-primary);
   line-height: 1.6;
-  background: var(--bg-gradient-general);
+  background: var(--bg-gradient-general); /* Volviendo al fondo general original */
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -82,7 +82,7 @@ header#main-header {
 header#main-header .u-sheet {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centra el menú */
+  justify-content: center; /* Centra el menÃº */
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px 20px;
@@ -96,7 +96,7 @@ header#main-header .u-sheet {
 .nav-menu {
   list-style: none;
   display: flex;
-  gap: 40px; /* Más espacio entre ítems */
+  gap: 40px; /* MÃ¡s espacio entre Ã­tems */
   padding: 0 20px;
 }
 
@@ -204,7 +204,7 @@ main#app {
 }
 
 /* ========================================
-   Sección 1: Inicio / Perfil (más compacto)
+   SecciÃ³n 1: Inicio / Perfil (mÃ¡s compacto)
 ======================================== */
 .u-section-1 {
   min-height: 750px; /* Reducido un poco */
@@ -266,7 +266,7 @@ main#app {
   color: #fff;
 }
 
-/* Botón "Conoce más de mí" (Mejorado) */
+/* BotÃ³n "Conoce mÃ¡s de mÃ­" (Mejorado) */
 .u-section-1 .u-btn-1.conoce-mas {
   padding: 10px 24px;
   font-size: 1rem;
@@ -290,7 +290,7 @@ main#app {
   background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
 }
 
-/* Responsividad Sección 1 */
+/* Responsividad SecciÃ³n 1 */
 @media (max-width: 575px) {
   .u-section-1 .u-image-1 {
     width: 340px;
@@ -306,19 +306,61 @@ main#app {
 }
 
 /* ========================================
-   Sección unificada: Trayectoria Profesional (Labores y Eventos)
+   Animaciones de desplazamiento suaves
+======================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animaciones para secciones al desplazarse */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.u-section-1, 
+.u-section-labores, 
+.u-section-portfolio, 
+.u-section-4 {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Todos los tÃ­tulos de secciones con animaciÃ³n */
+.u-text-1 {
+  transition: all 0.5s ease;
+}
+
+.u-text-1:hover {
+  text-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  letter-spacing: 1px;
+}
+
+/* ========================================
+   SecciÃ³n unificada: Trayectoria Profesional (Labores y Eventos)
 ======================================== */
 .u-section-labores {
-  background: var(--bg-gradient-general);
+  background: var(--bg-gradient-general); 
   text-align: center;
-  padding: 50px 20px; /* Reducido de 80px */
+  padding: 50px 0 20px; /* Reducido el padding inferior de 50px a 20px */
+  width: 100%;
+  margin-bottom: 0; /* Eliminar cualquier margen inferior */
 }
 
 .u-section-labores .u-sheet-1 {
-  min-height: 750px;
-  max-width: 1100px; /* Aumentado para más anchura */
+  min-height: 650px; /* Reducido de 700px */
+  max-width: 95%;
+  width: 1800px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .u-section-labores .u-text-1 {
@@ -327,14 +369,16 @@ main#app {
   color: var(--text-color);
 }
 
-/* Carrusel: Contenedor y Slides - Ajustados según petición */
+/* Carrusel: Contenedor y Slides - Maximizando espacio */
 .carousel-container {
   position: relative;
-  min-height: 700px; /* Por ejemplo, un mínimo de 700px */
-  margin: 30px auto; /* Reducido el margen */
+  height: auto;
+  min-height: 540px; /* Reducido de 570px */
+  width: 100%;
+  max-width: 1600px;
+  margin: 20px auto;
   overflow: hidden;
   border-radius: 15px;
-  max-width: 1000px; /* Aumentado para más anchura */
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
@@ -348,64 +392,100 @@ main#app {
   transition: opacity 1s ease-in-out;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .carousel-slide.active {
   opacity: 1;
 }
 
+/* Imagen con altura ajustada */
 .carousel-slide img {
   width: 100%;
-  height: 450px; /* Aumentado para imágenes más grandes */
+  height: 320px; /* Reducido de 350px */
   object-fit: cover;
   border-radius: 15px 15px 0 0;
 }
 
+/* Bloque de texto con altura ajustada para eliminar scroll - más compacto */
 .carousel-content {
   position: relative;
   z-index: 2;
   color: #fff;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  padding: 25px 30px;
-  background: rgba(42, 92, 130, 0.8);
+  padding: 15px 20px; /* Reducido de 18px 22px */
+  background: rgba(42, 92, 130, 0.9);
   border-radius: 0 0 15px 15px;
-  height: auto; 
+  height: auto;
+  min-height: 220px; /* Reducido de 250px */
+  max-height: 220px; /* Reducido de 250px */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .carousel-content h3 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
+  font-size: 1.25rem; /* Aumentado de 1.1rem */
+  margin-bottom: 8px; /* Reducido de 10px */
   color: #fff;
+  line-height: 1.2;
+  font-weight: bold;
 }
 
 .carousel-content p {
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  line-height: 1.6;
+  font-size: 0.9rem; /* Reducido de 0.95rem */
+  margin-bottom: 0; /* Eliminado el margen inferior */
+  line-height: 1.2; /* Reducido de 1.25 */
+  max-height: none;
+  overflow-y: visible;
+  display: block;
+  flex: 1 0 auto;
 }
 
-.carousel-content .u-btn-1 {
-  background: var(--accent-color);
-  border: none;
-  color: #fff;
+/* Centrar el botón - ajustado para espacio más reducido */
+.carousel-button-container {
+  margin-top: 0;
+  padding-top: 0;
+  align-self: center;
+  width: 100%;
+  text-align: center;
+}
+
+/* BotÃ³n para ver mÃ¡s repositorios */
+.view-more-btn {
+  background: none;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
   padding: 10px 20px;
-  border-radius: 4px;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 30px auto;
+  display: block;
   transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
 }
 
-.carousel-content .u-btn-1:hover {
+.view-more-btn:hover {
   background: var(--primary-color);
-  transform: translateY(-2px);
+  color: white;
+}
+
+/* Mejora para todos los elementos al hacer hover en la pÃ¡gina */
+a, button, .u-btn-1, .social-icons-presentation a, .social-icons-contact a {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Mejorar todos los efectos de hover para elementos interactivos */
+.repo:hover, 
+.project-card:hover,
+.dropdown-content-portfolio a:hover,
+.u-section-1 .u-btn-1.conoce-mas:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* ========================================
-   Social Icons en Sección Inicio (Presentación) - Rediseñados
+   Social Icons en SecciÃ³n Inicio (PresentaciÃ³n) - AÃ±adiendo GitHub
 ======================================== */
 .social-icons-presentation {
   display: flex;
@@ -444,7 +524,7 @@ main#app {
   transform: scale(1.2);
 }
 
-/* Estilos específicos para cada red social */
+/* Estilos especÃ­ficos para cada red social */
 .social-icons-presentation a.facebook:hover {
   background: #3b5998;
   border-color: #3b5998;
@@ -465,13 +545,19 @@ main#app {
   border-color: #0077b5;
 }
 
+.social-icons-presentation a.github:hover {
+  background: #333;
+  border-color: #333;
+}
+
 /* ========================================
-   Sección Portfolio: Portafolio GitHub - Mejorado
+   SecciÃ³n Portfolio: Portafolio GitHub - Volviendo al fondo original
 ======================================== */
 .u-section-portfolio {
   background: var(--bg-gradient-general);
   text-align: center;
-  padding: 50px 20px; /* Reducido de 80px */
+  padding: 20px 20px 50px; /* Reducido el padding superior de 50px a 20px */
+  margin-top: 0; /* Eliminar cualquier margen superior */
 }
 
 .u-section-portfolio .u-sheet-1 {
@@ -493,7 +579,7 @@ main#app {
   max-width: 800px;
 }
 
-/* Mejora del Dropdown en Sección Portafolio */
+/* Mejora del Dropdown en SecciÃ³n Portafolio */
 .dropdown-content-portfolio {
   display: flex;
   flex-wrap: wrap;
@@ -555,15 +641,14 @@ main#app {
 }
 
 /* ========================================
-   Sección 4: Contacto / CTA
-   (Nuevo fondo y elementos de contacto)
+   SecciÃ³n 4: Contacto / CTA - Volviendo al fondo original
 ======================================== */
 .u-section-4 {
-  background: var(--bg-gradient-general);
-  border-top: 1px solid #e8ecef;
+  background: var(--bg-gradient-general); /* Volviendo al fondo general original */
+  border-top: 1px solid #e8ecef; /* Volviendo al borde original */
   text-align: center;
-  padding: 50px 20px 150px; /* Reducido de 80px */
-  padding-bottom: 150px; /* Reducido de 200px */
+  padding: 50px 20px 150px;
+  padding-bottom: 150px;
   margin-bottom: -100px;
   position: relative;
   z-index: 1;
@@ -608,7 +693,7 @@ main#app {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Métodos de contacto extra */
+/* MÃ©todos de contacto extra */
 .contact-methods p {
   margin: 20px 0;
   font-size: 1.1rem;
@@ -653,7 +738,7 @@ main#app {
   transform: scale(1.2);
 }
 
-/* Estilos específicos para cada red social */
+/* Estilos especÃ­ficos para cada red social */
 .social-icons-contact a.facebook:hover {
   background: #3b5998;
   border-color: #3b5998;
@@ -672,6 +757,11 @@ main#app {
 .social-icons-contact a.linkedin:hover {
   background: #0077b5;
   border-color: #0077b5;
+}
+
+.social-icons-contact a.github:hover {
+  background: #333;
+  border-color: #333;
 }
 
 /* ========================================
@@ -700,28 +790,32 @@ main#app {
 }
 
 /* ========================================
-   Footer con degradado inverso mejorado - transición más suave
+   Footer con degradado inverso mejorado - mÃ¡s compacto
 ======================================== */
 .u-footer {
   text-align: center;
   padding: 30px 20px 20px;
-  background: var(--secondary-color);
+  background: transparent;
   position: relative;
   z-index: 5;
   margin-top: 0;
   bottom: 0;
 }
 
-/* Degradado del footer (corregido) */
 .u-footer::before {
   content: '';
   position: absolute;
-  top: -150px;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 150px;
-  background: linear-gradient(to bottom, rgba(93, 163, 153, 0), var(--secondary-color));
+  height: 100%;
+  background: linear-gradient(to top, 
+    var(--secondary-color) 0%,
+    rgba(93, 163, 153, 0.7) 60%,
+    rgba(93, 163, 153, 0.3) 90%,
+    rgba(93, 163, 153, 0.1) 100%);
   z-index: -1;
+  opacity: 0.8; /* Reducir la intensidad general */
 }
 
 .u-footer .u-small-text {
@@ -746,7 +840,7 @@ main#app {
   src: url(fonts/SegoeUI.ttf) format("truetype");
 }
 
-/* Estilos para el menú hamburguesa (móvil) */
+/* Estilos para el menÃº hamburguesa (mÃ³vil) */
 .u-menu-icon {
   width: 24px;
   height: 24px;
@@ -766,14 +860,14 @@ main#app {
   color: var(--primary-color);
 }
 
-/* Ajuste del overlay en el menú móvil */
+/* Ajuste del overlay en el menÃº mÃ³vil */
 .u-black.u-menu-overlay {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* ========================================
    Secciones a ancho completo
-   (Forzar que cada sección ocupe el 100% del viewport sin márgenes laterales)
+   (Forzar que cada secciÃ³n ocupe el 100% del viewport sin mÃ¡rgenes laterales)
 ======================================== */
 .u-section-1, 
 .u-section-2, 
@@ -803,8 +897,8 @@ main#app {
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  background-size: cover;
-  background-position: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .carousel-slide.active {
@@ -820,7 +914,7 @@ main#app {
 }
 
 /* ========================================
-   Carrusel: Botones de navegación
+   Carrusel: Botones de navegaciÃ³n
 ======================================== */
 .carousel-nav {
   position: absolute;
@@ -859,7 +953,7 @@ main#app {
 }
 
 /* ========================================
-   Mejora de la sección de portafolio con proyectos destacados
+   Mejora de la secciÃ³n de portafolio con proyectos destacados
 ======================================== */
 .featured-projects {
   display: grid;
@@ -921,7 +1015,7 @@ main#app {
   background: var(--primary-color);
 }
 
-/* Botón para ver más repositorios */
+/* BotÃ³n para ver mÃ¡s repositorios */
 .view-more-btn {
   background: none;
   border: 2px solid var(--primary-color);
@@ -941,64 +1035,19 @@ main#app {
 }
 
 /* ========================================
-   Carousel en sección labores destacadas - ajustes
+   Carrusel en secciÃ³n labores destacadas - ajustes
 ======================================== */
-.carousel-container {
-  position: relative;
-  height: 600px; /* Aumentado de 520px */
-  margin: 40px auto;
-  overflow: hidden;
-  border-radius: 15px;
-  max-width: 900px; /* Aumentado de 800px */
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-}
+/* DEFINICIÓN ELIMINADA PARA EVITAR DUPLICADOS */
 
-.carousel-slide img {
-  width: 100%;
-  height: 400px; /* Aumentado de 340px */
-  object-fit: cover;
-  border-radius: 15px 15px 0 0;
-}
-
-.carousel-content {
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  padding: 20px 25px; /* Ajustado padding */
-  background: rgba(42, 92, 130, 0.8);
-  border-radius: 0 0 15px 15px;
-  height: 200px; /* Aumentado de 180px */
-  overflow-y: auto; /* Scroll si el contenido es muy largo */
-}
-
-.carousel-content h3 {
-  font-size: 1.6rem; /* Reducido ligeramente */
-  margin-bottom: 8px;
-  color: #fff;
-}
-
-.carousel-content p {
-  font-size: 1rem; /* Reducido ligeramente */
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
-/* Ocultar la barra de desplazamiento pero permitir scroll */
-.carousel-content::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-
-/* Actualización del icono de Twitter (volver al clásico) */
+/* ActualizaciÃ³n del icono de Twitter (volver al clÃ¡sico) */
 .social-icons-presentation a.twitter:hover,
 .social-icons-contact a.twitter:hover {
-  background: #1da1f2; /* Azul clásico de Twitter */
+  background: #1da1f2; /* Azul clÃ¡sico de Twitter */
   border-color: #1da1f2;
 }
 
 /* ========================================
-   Sección Contacto mejorada
+   SecciÃ³n Contacto mejorada
 ======================================== */
 .contacto-container {
   display: flex;
@@ -1014,4 +1063,75 @@ main#app {
 
 .contacto-info {
   max-width: 800px;
+}
+
+/* Asegurar que el botón sea siempre visible - adaptado a espacio compacto */
+.carousel-content .u-btn-1 {
+  background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+  border: none;
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+  display: inline-block !important;
+  margin-top: 2px; /* Reducido de 3px */
+  margin-bottom: 3px; /* Reducido de 5px */
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-content .u-btn-1:hover {
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-content .u-btn-1::after {
+  content: "→";
+  margin-left: 6px;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.carousel-content .u-btn-1:hover::after {
+  transform: translateX(4px);
+}
+
+/* AnimaciÃ³n para mostrar/ocultar repositorios */
+#github-portfolio {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease-in-out, opacity 0.4s ease-in-out;
+  opacity: 0;
+}
+
+#github-portfolio.visible {
+  max-height: 2000px; /* Valor alto para permitir todo el contenido */
+  opacity: 1;
+}
+
+/* Barra de desplazamiento personalizada */
+.carousel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.carousel-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.carousel-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.carousel-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
