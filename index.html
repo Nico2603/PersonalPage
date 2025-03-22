@@ -1,36 +1,40 @@
 <!DOCTYPE html>
-<html lang="es" style="font-size: 16px;">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="keywords" content="Nicolás Ceballos Brito, Labores Destacadas, Programación, Ingeniería, Portafolio" />
+    <meta name="keywords" content="Nicolás Ceballos Brito, Desarrollo Web, Programación, Ingeniería, Portafolio" />
     <meta name="description" content="Perfil profesional de Nicolás Ceballos Brito, desarrollador web y entusiasta de la innovación tecnológica." />
+    <meta name="theme-color" content="#2a5c82" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Perfil Profesional - Nicolás Ceballos Brito" />
+    <meta property="og:description" content="Desarrollador web y estudiante de Ingeniería de Sistemas y Telecomunicaciones" />
     <title>Perfil Profesional - Nicolás Ceballos Brito</title>
     <link rel="stylesheet" href="style.css" media="screen" />
     <!-- Íconos de Font Awesome para redes sociales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <!-- Fuente Poppins moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="theme-color" content="#478ac9" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:type" content="website" />
     <!-- Script principal de la SPA -->
     <script defer src="app.js"></script>
   </head>
   <body>
     <!-- HEADER: Nuevo Navbar con Dropdowns -->
-    <header class="u-header" id="main-header">
-      <div class="u-sheet">
-        <div class="mobile-menu-toggle" id="menuToggle">
+    <header class="header" id="main-header">
+      <div class="container">
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
           <span></span>
           <span></span>
           <span></span>
-        </div>
+        </button>
         <nav class="navbar">
           <ul class="nav-menu" id="navMenu">
-            <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
+            <li class="nav-item">
+              <a href="#inicio" class="nav-link">Inicio</a>
+            </li>
             <li class="nav-item dropdown">
-              <a href="#portafolio" class="nav-link">Portafolio ▾</a>
+              <a href="#portafolio" class="nav-link dropdown-toggle">Portafolio <span class="dropdown-icon">▾</span></a>
               <div class="dropdown-content">
                 <a href="#portafolio-chatbot">ChatBot-MentalHealth</a>
                 <a href="#portafolio-pdm">PdM-Manager</a>
@@ -39,7 +43,7 @@
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a href="#labores" class="nav-link">Labores ▾</a>
+              <a href="#labores" class="nav-link dropdown-toggle">Labores <span class="dropdown-icon">▾</span></a>
               <div class="dropdown-content">
                 <a href="#proyecto1">Maratón Nacional</a>
                 <a href="#proyecto2">Representante UCP</a>
@@ -49,14 +53,14 @@
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a href="#contacto" class="nav-link">Contacto ▾</a>
+              <a href="#contacto" class="nav-link dropdown-toggle">Contacto <span class="dropdown-icon">▾</span></a>
               <div class="dropdown-content">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nicolasceballosbrito@gmail.com&su=Contacto desde Sitio Web&body=Hola Nicolás, estoy interesado en contactarte para:" target="_blank">Email</a>
-                <a href="https://linkedin.com/in/nicolas-ceballos-brito" target="_blank">LinkedIn</a>
-                <a href="https://github.com/Nico2603" target="_blank">GitHub</a>
-                <a href="https://twitter.com/NicolasCBrito" target="_blank">Twitter</a>
-                <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank">Facebook</a>
-                <a href="https://www.instagram.com/nico_ceballos26/" target="_blank">Instagram</a>
+                <a href="mailto:nicolasceballosbrito@gmail.com?subject=Contacto desde Sitio Web&body=Hola Nicolás, estoy interesado en contactarte para:">Email</a>
+                <a href="https://linkedin.com/in/nicolas-ceballos-brito" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/Nico2603" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://twitter.com/NicolasCBrito" target="_blank" rel="noopener">Twitter</a>
+                <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank" rel="noopener">Facebook</a>
+                <a href="https://www.instagram.com/nico_ceballos26/" target="_blank" rel="noopener">Instagram</a>
               </div>
             </li>
           </ul>
@@ -67,157 +71,187 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main id="app">
       <!-- Sección Inicio: Perfil y Redes Sociales -->
-      <section id="inicio" class="u-section-1">
-        <div class="u-image-1"></div>
-        <h2 class="u-text-1">Nicolás Ceballos Brito</h2>
-        <p class="u-text-2">
-          Estudiante de noveno semestre de Ingeniería de Sistemas y Telecomunicaciones con experiencia en desarrollo web, software, análisis de datos e inteligencia artificial. Experto en JavaScript, React, Angular, C++, Java y Python. Mi enfoque combina innovación tecnológica y soluciones de alto impacto para problemas reales.
-        </p>
-        <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" class="u-btn-1 conoce-mas">Conoce más de mí</a>
-        <!-- Solo se muestran los íconos de redes sociales debajo -->
-        <div class="social-icons-presentation">
-          <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com/NicolasCBrito" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/nico_ceballos26/" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/Nico2603" target="_blank" class="github"><i class="fab fa-github"></i></a>
+      <section id="inicio" class="section section-intro">
+        <div class="container">
+          <div class="profile-image"></div>
+          <h1 class="section-title">Nicolás Ceballos Brito</h1>
+          <p class="section-text">
+            Estudiante de noveno semestre de Ingeniería de Sistemas y Telecomunicaciones con experiencia en desarrollo web, software, análisis de datos e inteligencia artificial. Experto en JavaScript, React, Angular, C++, Java y Python. Mi enfoque combina innovación tecnológica y soluciones de alto impacto para problemas reales.
+          </p>
+          <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" class="btn btn-primary" target="_blank" rel="noopener">Conoce más de mí</a>
+          
+          <div class="social-icons">
+            <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon facebook">
+              <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            </a>
+            <a href="https://twitter.com/NicolasCBrito" target="_blank" rel="noopener" aria-label="Twitter" class="social-icon twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.instagram.com/nico_ceballos26/" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon instagram">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon linkedin">
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+            <a href="https://github.com/Nico2603" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon github">
+              <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
       </section>
 
       <!-- Sección Portafolio GitHub con Dropdown (AHORA VA PRIMERO) -->
-      <section id="portafolio" class="u-section-portfolio">
-        <div class="u-sheet-1">
-          <h2 class="u-text-1">Portafolio GitHub</h2>
-          <p class="u-text-2">
+      <section id="portafolio" class="section section-portfolio">
+        <div class="container">
+          <h2 class="section-title">Portafolio GitHub</h2>
+          <p class="section-text">
             Explora mis proyectos en GitHub y descubre cómo aplico la tecnología para resolver desafíos reales.
           </p>
           
           <!-- Proyectos destacados en formato de tarjetas -->
-          <div class="featured-projects">
-            <div id="portafolio-chatbot" class="project-card">
-              <img src="https://repository-images.githubusercontent.com/938412804/7f2b92ec-e56c-4931-b4d4-2abb01349316" alt="ChatBot-MentalHealth" class="project-img">
+          <div class="projects-grid">
+            <article id="portafolio-chatbot" class="project-card">
+              <img src="https://repository-images.githubusercontent.com/938412804/7f2b92ec-e56c-4931-b4d4-2abb01349316" alt="ChatBot-MentalHealth" class="project-img" loading="lazy">
               <div class="project-content">
-                <h3>ChatBot-MentalHealth</h3>
-                <p>Chatbot especializado en apoyo de salud mental utilizando IA para proporcionar recursos y soporte emocional.</p>
-                <a href="https://github.com/Nico2603/ChatBot-MentalHealth" target="_blank">Ver Proyecto</a>
+                <h3 class="project-title">ChatBot-MentalHealth</h3>
+                <p class="project-description">Chatbot especializado en apoyo de salud mental utilizando IA para proporcionar recursos y soporte emocional.</p>
+                <a href="https://github.com/Nico2603/ChatBot-MentalHealth" class="project-link" target="_blank" rel="noopener">Ver Proyecto</a>
               </div>
-            </div>
+            </article>
             
-            <div id="portafolio-pdm" class="project-card">
-              <img src="https://repository-images.githubusercontent.com/941674189/849d685d-01e7-4cdb-b160-e51e5e6b5f0d" alt="PdM-Manager" class="project-img">
+            <article id="portafolio-pdm" class="project-card">
+              <img src="https://repository-images.githubusercontent.com/941674189/849d685d-01e7-4cdb-b160-e51e5e6b5f0d" alt="PdM-Manager" class="project-img" loading="lazy">
               <div class="project-content">
-                <h3>PdM-Manager</h3>
-                <p>Sistema de gestión para mantenimiento predictivo, optimizando recursos y previniendo fallos técnicos.</p>
-                <a href="https://github.com/Nico2603/PdM-Manager" target="_blank">Ver Proyecto</a>
+                <h3 class="project-title">PdM-Manager</h3>
+                <p class="project-description">Sistema de gestión para mantenimiento predictivo, optimizando recursos y previniendo fallos técnicos.</p>
+                <a href="https://github.com/Nico2603/PdM-Manager" class="project-link" target="_blank" rel="noopener">Ver Proyecto</a>
               </div>
-            </div>
+            </article>
             
-            <div id="portafolio-fastqa" class="project-card">
-              <img src="https://repository-images.githubusercontent.com/937310491/90197292-8ac1-4d7e-a738-eff51f1e6f65" alt="FastQA-HomePage" class="project-img">
+            <article id="portafolio-fastqa" class="project-card">
+              <img src="https://repository-images.githubusercontent.com/937310491/90197292-8ac1-4d7e-a738-eff51f1e6f65" alt="FastQA-HomePage" class="project-img" loading="lazy">
               <div class="project-content">
-                <h3>FastQA-HomePage</h3>
-                <p>Página de inicio para plataforma de preguntas y respuestas rápidas con enfoque en experiencia de usuario.</p>
-                <a href="https://github.com/Nico2603/FastQA-HomePage" target="_blank">Ver Proyecto</a>
+                <h3 class="project-title">FastQA-HomePage</h3>
+                <p class="project-description">Página de inicio para plataforma de preguntas y respuestas rápidas con enfoque en experiencia de usuario.</p>
+                <a href="https://github.com/Nico2603/FastQA-HomePage" class="project-link" target="_blank" rel="noopener">Ver Proyecto</a>
               </div>
-            </div>
+            </article>
             
-            <div id="portafolio-magia" class="project-card">
-              <img src="https://repository-images.githubusercontent.com/943666070/5a151c83-1485-49b9-875f-14e528fd4ed1" alt="magiacafetera-ui" class="project-img">
+            <article id="portafolio-magia" class="project-card">
+              <img src="https://repository-images.githubusercontent.com/943666070/5a151c83-1485-49b9-875f-14e528fd4ed1" alt="magiacafetera-ui" class="project-img" loading="lazy">
               <div class="project-content">
-                <h3>magiacafetera-ui</h3>
-                <p>Interfaz de usuario para aplicación relacionada con producción y distribución de café colombiano.</p>
-                <a href="https://github.com/Nico2603/magiacafetera-ui" target="_blank">Ver Proyecto</a>
+                <h3 class="project-title">magiacafetera-ui</h3>
+                <p class="project-description">Interfaz de usuario para aplicación relacionada con producción y distribución de café colombiano.</p>
+                <a href="https://github.com/Nico2603/magiacafetera-ui" class="project-link" target="_blank" rel="noopener">Ver Proyecto</a>
               </div>
-            </div>
+            </article>
           </div>
           
           <!-- Botón para ver más repositorios -->
-          <button id="viewMoreRepos" class="view-more-btn">Ver todos los repositorios</button>
+          <button id="viewMoreRepos" class="btn btn-secondary">Ver todos los repositorios</button>
           
           <!-- Contenedor para todos los repositorios -->
-          <div id="github-portfolio" class="u-portfolio-container" style="display: none;">
+          <div id="github-portfolio" class="repositories-container">
             <!-- Aquí se cargarán dinámicamente los repositorios -->
           </div>
         </div>
       </section>
 
       <!-- Sección Labores Destacadas (Anterior Trayectoria Profesional) -->
-      <section id="labores" class="u-section-labores">
-        <div class="u-sheet-1">
-          <h2 class="u-text-1">Labores Destacadas</h2>
-          <div class="carousel-container">
-            <div id="proyecto1" class="carousel-slide" data-link="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1710808532744/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4">
-              <img src="images/p1.jpg" alt="Maratón Nacional">
+      <section id="labores" class="section section-labores">
+        <div class="container">
+          <h2 class="section-title">Labores Destacadas</h2>
+          <div class="carousel">
+            <article id="proyecto1" class="carousel-slide">
+              <img src="images/p1.jpg" alt="Maratón Nacional de Programación UAM" class="carousel-img" loading="lazy">
               <div class="carousel-content">
-                <h3>Maratón Nacional de Programación UAM</h3>
-                <p>Participé en la Maratón Nacional de Programación ACIS/REDIS, clasificatoria para la Maratón Regional Latinoamericana ICPC 2022. Este evento promueve habilidades en ingeniería de sistemas e incentiva el interés por la programación mediante desafíos resueltos en tiempo récord.</p>
-                <div class="carousel-button-container">
-                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1710808532744/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="u-btn-1" target="_blank">Ver Detalles</a>
+                <h3 class="carousel-title">Maratón Nacional de Programación UAM</h3>
+                <p class="carousel-description">Participé en la Maratón Nacional de Programación ACIS/REDIS, clasificatoria para la Maratón Regional Latinoamericana ICPC 2022. Este evento promueve habilidades en ingeniería de sistemas e incentiva el interés por la programación mediante desafíos resueltos en tiempo récord.</p>
+                <div class="carousel-footer">
+                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1710808532744/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="btn btn-primary" target="_blank" rel="noopener">Ver Detalles</a>
                 </div>
               </div>
-            </div>
-            <div id="proyecto2" class="carousel-slide" data-link="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1635553816822/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4">
-              <img src="images/p2.jpg" alt="Representantes Estudiantiles">
+            </article>
+            <article id="proyecto2" class="carousel-slide">
+              <img src="images/p2.jpg" alt="Representante Estudiantil UCP" class="carousel-img" loading="lazy">
               <div class="carousel-content">
-                <h3>Representante Estudiantil UCP</h3>
-                <p>Asumí como representante en el Consejo Estudiantil de la Universidad Católica de Pereira, en una ceremonia presidida por las autoridades universitarias. Participé en la elección de representantes ante el Consejo Académico y Consejo Superior, fomentando liderazgo y ciudadanía.</p>
-                <div class="carousel-button-container">
-                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1635553816822/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="u-btn-1" target="_blank">Ver Detalles</a>
+                <h3 class="carousel-title">Representante Estudiantil UCP</h3>
+                <p class="carousel-description">Asumí como representante en el Consejo Estudiantil de la Universidad Católica de Pereira, en una ceremonia presidida por las autoridades universitarias. Participé en la elección de representantes ante el Consejo Académico y Consejo Superior, fomentando liderazgo y ciudadanía.</p>
+                <div class="carousel-footer">
+                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1635553816822/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="btn btn-primary" target="_blank" rel="noopener">Ver Detalles</a>
                 </div>
               </div>
-            </div>
-            <div id="proyecto3" class="carousel-slide" data-link="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1635553820719/single-media-viewer/?type=LINK&profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4">
-              <img src="images/p3.jpg" alt="ACIS/REDIS 2023">
+            </article>
+            <article id="proyecto3" class="carousel-slide">
+              <img src="images/p3.jpg" alt="Maratón ACIS/REDIS 2023" class="carousel-img" loading="lazy">
               <div class="carousel-content">
-                <h3>Maratón ACIS/REDIS 2023</h3>
-                <p>Representé a la Universidad Católica de Pereira en la XXXVII Maratón Nacional de Programación ACIS/REDIS 2023 en Manizales. Competimos entre 108 equipos de diferentes universidades de Colombia, poniendo a prueba nuestras habilidades de programación y resolución de problemas.</p>
-                <div class="carousel-button-container">
-                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1635553820719/single-media-viewer/?type=LINK&profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="u-btn-1" target="_blank">Ver Detalles</a>
+                <h3 class="carousel-title">Maratón ACIS/REDIS 2023</h3>
+                <p class="carousel-description">Representé a la Universidad Católica de Pereira en la XXXVII Maratón Nacional de Programación ACIS/REDIS 2023 en Manizales. Competimos entre 108 equipos de diferentes universidades de Colombia, poniendo a prueba nuestras habilidades de programación y resolución de problemas.</p>
+                <div class="carousel-footer">
+                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1635553820719/single-media-viewer/?type=LINK&profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="btn btn-primary" target="_blank" rel="noopener">Ver Detalles</a>
                 </div>
               </div>
-            </div>
-            <div id="proyecto4" class="carousel-slide" data-link="https://www.linkedin.com/posts/nicolas-ceballos-brito_compromisocomunitario-solidaridad-liderazgoestudiantil-activity-7193365777515773953-7wOj?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4">
-              <img src="images/p4.jpg" alt="Apoyo Comunitario">
+            </article>
+            <article id="proyecto4" class="carousel-slide">
+              <img src="images/p4.jpg" alt="Iniciativa de Apoyo Comunitario" class="carousel-img" loading="lazy">
               <div class="carousel-content">
-                <h3>Iniciativa de Apoyo Comunitario</h3>
-                <p>Como representante estudiantil ante el consejo académico, lideré una iniciativa para apoyar a más de 500 personas afectadas por un incendio en el barrio Futuro Bajo. Logramos recolectar donaciones y gestionar 170 kits escolares para los niños del sector, demostrando nuestro compromiso con la comunidad.</p>
-                <div class="carousel-button-container">
-                  <a href="https://www.linkedin.com/posts/nicolas-ceballos-brito_compromisocomunitario-solidaridad-liderazgoestudiantil-activity-7193365777515773953-7wOj?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="u-btn-1" target="_blank">Ver Detalles</a>
+                <h3 class="carousel-title">Iniciativa de Apoyo Comunitario</h3>
+                <p class="carousel-description">Como representante estudiantil ante el consejo académico, lideré una iniciativa para apoyar a más de 500 personas afectadas por un incendio en el barrio Futuro Bajo. Logramos recolectar donaciones y gestionar 170 kits escolares para los niños del sector, demostrando nuestro compromiso con la comunidad.</p>
+                <div class="carousel-footer">
+                  <a href="https://www.linkedin.com/posts/nicolas-ceballos-brito_compromisocomunitario-solidaridad-liderazgoestudiantil-activity-7193365777515773953-7wOj?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="btn btn-primary" target="_blank" rel="noopener">Ver Detalles</a>
                 </div>
               </div>
-            </div>
-            <div id="proyecto5" class="carousel-slide" data-link="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1738888949947/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4">
-              <img src="images/p5.jpg" alt="Visita Obispo">
+            </article>
+            <article id="proyecto5" class="carousel-slide">
+              <img src="images/p5.jpg" alt="Visita del Obispo a la UCP" class="carousel-img" loading="lazy">
               <div class="carousel-content">
-                <h3>Visita del Obispo a la UCP</h3>
-                <p>Tuve el honor de participar en la visita de Monseñor Nelson Jair Cardona Ramírez a nuestro campus universitario. Como representante estudiantil, compartí espacios con decanos, el rector y el equipo administrativo, fortaleciendo los lazos entre la academia y nuestra comunidad religiosa.</p>
-                <div class="carousel-button-container">
-                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1738888949947/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="u-btn-1" target="_blank">Ver Detalles</a>
+                <h3 class="carousel-title">Visita del Obispo a la UCP</h3>
+                <p class="carousel-description">Tuve el honor de participar en la visita de Monseñor Nelson Jair Cardona Ramírez a nuestro campus universitario. Como representante estudiantil, compartí espacios con decanos, el rector y el equipo administrativo, fortaleciendo los lazos entre la academia y nuestra comunidad religiosa.</p>
+                <div class="carousel-footer">
+                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/overlay/1738888949947/single-media-viewer/?profileId=ACoAADm8YQABLNW25Vw1bl3FRj4BVItbsOYwHg4" class="btn btn-primary" target="_blank" rel="noopener">Ver Detalles</a>
                 </div>
               </div>
-            </div>
+            </article>
+            
+            <!-- Botones de navegación del carrusel -->
+            <button class="carousel-nav prev" aria-label="Anterior">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-nav next" aria-label="Siguiente">
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </section>
 
       <!-- Sección Contacto / CTA -->
-      <section id="contacto" class="u-section-4">
-        <div class="u-sheet-1">
-          <h2 class="u-text-1">¿Quieres trabajar conmigo?</h2>
-          <div class="contacto-container">
+      <section id="contacto" class="section section-contacto">
+        <div class="container">
+          <h2 class="section-title">¿Quieres trabajar conmigo?</h2>
+          <div class="contacto-wrapper">
             <div class="contacto-info">
-              <p class="u-text-2">
+              <p class="section-text">
                 ¿Buscas un profesional apasionado por la tecnología y la innovación? Estoy disponible para colaborar en proyectos desafiantes que requieran soluciones creativas y eficientes. Mi experiencia en desarrollo, IA y análisis de datos puede impulsar tus ideas al siguiente nivel.
               </p>
               <div class="contact-methods">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nicolasceballosbrito@gmail.com&su=Propuesta de Colaboración&body=Hola Nicolás, me gustaría discutir una oportunidad de colaboración en el siguiente proyecto:" target="_blank" class="u-btn-1">Envíame un correo</a>
-                <p>O conéctate conmigo en redes:</p>
-                <div class="social-icons-contact">
-                  <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                  <a href="https://twitter.com/NicolasCBrito" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
-                  <a href="https://www.instagram.com/nico_ceballos26/" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
-                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="https://github.com/Nico2603" target="_blank" class="github"><i class="fab fa-github"></i></a>
+                <a href="mailto:nicolasceballosbrito@gmail.com?subject=Propuesta de Colaboración&body=Hola Nicolás, me gustaría discutir una oportunidad de colaboración en el siguiente proyecto:" class="btn btn-primary">Envíame un correo</a>
+                <p class="connect-text">O conéctate conmigo en redes:</p>
+                <div class="social-icons">
+                  <a href="https://www.facebook.com/NicolasCeballosBrito" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon facebook">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                  </a>
+                  <a href="https://twitter.com/NicolasCBrito" target="_blank" rel="noopener" aria-label="Twitter" class="social-icon twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                  </a>
+                  <a href="https://www.instagram.com/nico_ceballos26/" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/nicolas-ceballos-brito/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon linkedin">
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                  </a>
+                  <a href="https://github.com/Nico2603" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon github">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>
@@ -227,9 +261,9 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="u-footer" id="sec-c824">
-      <div class="u-sheet-1">
-        <p class="u-small-text">© 2025 Nicolás Ceballos Brito. Todos los derechos reservados.</p>
+    <footer class="footer">
+      <div class="container">
+        <p class="copyright">© 2025 Nicolás Ceballos Brito. Todos los derechos reservados.</p>
       </div>
     </footer>
   </body>

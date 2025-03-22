@@ -1,58 +1,84 @@
-# README - Personal Page
+# Portafolio Personal de Nicolás Ceballos Brito
 
-¡Bienvenido/a a mi proyecto personal! Este repositorio contiene mi **Personal Page**, un espacio donde comparto noticias, proyectos y consejos relacionados con el mundo tecnológico, además de presentar mi trayectoria académica y profesional.
+Este repositorio contiene el código fuente de mi página web personal, que sirve como portafolio profesional donde muestro mis proyectos, experiencia y habilidades.
 
----
+## Estructura del Proyecto
 
-## Acerca de
+```
+├── index.html          # Documento HTML principal
+├── style.css           # Estilos CSS 
+├── app.js              # JavaScript con funcionalidad interactiva
+└── images/             # Carpeta de imágenes
+    ├── pic.jpg         # Foto de perfil
+    ├── p1.jpg          # Imágenes del carrusel
+    └── ...
+```
 
-Soy estudiante de **noveno semestre de Ingeniería de Sistemas y Telecomunicaciones** en la **Universidad Católica de Pereira**, con experiencia en desarrollo de software, análisis de datos e inteligencia artificial. Mi enfoque está en la aplicación de tecnologías innovadoras para la solución de problemas reales, combinando el aprendizaje teórico con la práctica.
+## Características
 
-- **Desarrollo Web:** Experiencia en JavaScript, React y Angular.  
-- **Desarrollo de Software:** Manejo de C++, Java y Python.  
-- **Inteligencia Artificial & Análisis de Datos:** Implementación de modelos no supervisados como DBSCAN, KMeans, Isolation Forest y CBLOF para análisis predictivo en mantenimiento industrial.  
-- **Testing Automatizado:** Integración de QA en el ciclo de desarrollo de software.  
-- **Liderazgo & Investigación:** Representante estudiantil ante el Consejo Académico (2023-2025) y participante en semilleros de investigación en Industria 4.0 y programación competitiva.
-
-He participado en el **Verano de Investigación Científica y Tecnológica del Pacífico**, colaborando en proyectos de machine learning y mantenimiento predictivo. También cuento con certificaciones en SQL, Power BI, UX/UI y metodologías ágiles.
-
-Apasionado por la innovación, la transformación digital y el desarrollo de soluciones tecnológicas de alto impacto.
-
----
-
-## Descripción del Proyecto
-
-Este proyecto web tiene como objetivo proporcionar una plataforma para **compartir noticias, proyectos y consejos** sobre los avances más recientes en tecnología. Aquí encontrarás:
-
-- **Noticias** frescas y relevantes sobre tendencias tecnológicas.  
-- **Proyectos destacados** que demuestran la aplicación práctica de diferentes herramientas.  
-- **Artículos y consejos** útiles para profesionales y entusiastas del área.
-
----
-
-## Instrucciones de Uso
-
-1. **Clonar o descargar** este repositorio.  
-2. **Abrir** el archivo `index.html` en tu navegador web preferido.  
-3. **Explorar** las diferentes secciones (inicio, portafolio, labores destacadas, etc.) para acceder a la información.  
-4. **Disfrutar** del contenido sobre innovación, desarrollo de software e inteligencia artificial.
-
-> **Nota:** También puedes visitar la página en línea si está desplegada en un servicio de hosting o GitHub Pages.
-
----
+- **Diseño Responsivo**: Adaptable a todos los dispositivos, desde móviles hasta pantallas grandes.
+- **Navegación Intuitiva**: Menú de navegación con dropdowns para acceso rápido a las secciones.
+- **Carrusel Interactivo**: Muestra proyectos y experiencias con navegación manual y automática.
+- **Integración con GitHub**: Muestra repositorios dinámicamente mediante la API de GitHub.
+- **Optimización SEO**: Metadatos y estructura semántica para mejor posicionamiento.
 
 ## Tecnologías Utilizadas
 
-- **HTML5**  
-- **CSS3**  
-- **JavaScript**
+- **HTML5**: Estructura semántica con las últimas etiquetas de HTML.
+- **CSS3**: Estilos modernos con variables CSS, flexbox y grid.
+- **JavaScript**: Interactividad y funcionalidades dinámicas sin frameworks.
+- **Font Awesome**: Iconos vectoriales para redes sociales.
+- **Google Fonts**: Tipografías web optimizadas.
+- **API de GitHub**: Integración para mostrar repositorios actualizados.
 
-Además, se integran otras librerías y recursos como:
+## Cómo Utilizarlo
 
-- **Font Awesome** para íconos de redes sociales.  
-- **Google Fonts** (Poppins) para una tipografía moderna.  
-- **Herramientas de testing y metodologías ágiles** para QA y desarrollo continuo.
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/Nico2603/personal-portfolio.git
+   ```
+
+2. Abre el archivo `index.html` en tu navegador para ver el sitio localmente.
+
+3. Para personalizar:
+   - Modifica `index.html` para actualizar el contenido.
+   - Ajusta los estilos en `style.css`.
+   - Personaliza la funcionalidad en `app.js`.
+   - Reemplaza las imágenes en la carpeta `images/` con tus propias imágenes.
+
+## Personalización
+
+### Cambiar Usuario de GitHub
+
+Para mostrar tus propios repositorios, edita la constante `GITHUB_USERNAME` en `app.js`:
+
+```javascript
+const GITHUB_USERNAME = 'TuUsuarioDeGitHub';
+```
+
+### Modificar Proyectos Destacados
+
+Edita la sección con id `projects-grid` en `index.html` para mostrar tus propios proyectos.
+
+### Actualizar Información Personal
+
+Modifica las secciones relevantes en `index.html` para incluir tu información personal y profesional.
+
+## Optimización
+
+- Las imágenes están optimizadas para carga rápida.
+- El CSS está organizado por componentes para facilitar el mantenimiento.
+- El JavaScript utiliza funciones modernas y está estructurado para máxima eficiencia.
+
+## Próximas Mejoras
+
+- [ ] Implementar modo oscuro con toggle.
+- [ ] Añadir filtros para categorización de proyectos.
+- [ ] Integrar blog con contenido técnico.
+- [ ] Mejorar accesibilidad para cumplir con WCAG 2.1.
 
 ---
 
-¡Gracias por visitar mi **Personal Page**! Si tienes preguntas, sugerencias o deseas colaborar en algún proyecto, no dudes en **[contactarme](mailto:nicolasceballosbrito@gmail.com)**.
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Siéntete libre de usarlo como base para tu propio portafolio personal.
