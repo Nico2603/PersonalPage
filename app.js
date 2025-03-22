@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initViewMoreRepos();
   initScrollAnimations();
   initDropdownMenu();
+  initEmailHandling();
 });
 
 /**
@@ -55,8 +56,9 @@ function initDropdownMenu() {
   
   dropdownItems.forEach(item => {
     const dropdownToggle = item.querySelector('.dropdown-toggle');
+    const dropdownContent = item.querySelector('.dropdown-content');
     
-    if (!dropdownToggle) return;
+    if (!dropdownToggle || !dropdownContent) return;
     
     // En dispositivos móviles, prevenir navegación y mostrar submenú
     dropdownToggle.addEventListener('click', (e) => {
@@ -70,6 +72,19 @@ function initDropdownMenu() {
           link.style.setProperty('--link-index', index);
         });
       }
+    });
+    
+    // Cerrar menú móvil al hacer clic en enlaces del dropdown
+    const dropdownLinks = dropdownContent.querySelectorAll('a');
+    dropdownLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768 && document.querySelector('.nav-menu.active')) {
+          document.querySelector('.mobile-menu-toggle').classList.remove('active');
+          document.querySelector('.nav-menu').classList.remove('active');
+          document.body.classList.remove('menu-open');
+          item.classList.remove('active');
+        }
+      });
     });
   });
 }
@@ -138,12 +153,25 @@ function initViewMoreRepos() {
     if (reposContainer.classList.contains('visible')) {
       reposContainer.classList.remove('visible');
       viewMoreBtn.textContent = 'Ver todos los repositorios';
+      viewMoreBtn.classList.remove('expanded');
+      
+      // Esperar a que termine la transición antes de ocultar completamente
+      setTimeout(() => {
+        if (!reposContainer.classList.contains('visible')) {
+          reposContainer.style.display = 'none';
+        }
+      }, 400);
+      
       return;
     }
+    
+    // Asegurarse de que el contenedor esté visible antes de la animación
+    reposContainer.style.display = 'grid';
     
     // Mostrar estado de carga
     viewMoreBtn.innerHTML = '<span class="loading-spinner"></span>Cargando...';
     viewMoreBtn.disabled = true;
+    viewMoreBtn.classList.add('expanded');
     
     try {
       // Obtener repositorios desde la API de GitHub
@@ -151,7 +179,10 @@ function initViewMoreRepos() {
       displayRepos(repos, reposContainer);
       
       // Mostrar el contenedor con animación
-      reposContainer.classList.add('visible');
+      setTimeout(() => {
+        reposContainer.classList.add('visible');
+      }, 10); // Pequeño retraso para asegurar que la transición funcione
+      
       viewMoreBtn.textContent = 'Ocultar repositorios';
     } catch (error) {
       console.error('Error al cargar los repositorios:', error);
@@ -269,5 +300,47 @@ function initScrollAnimations() {
     element.style.transform = 'translateY(30px)';
     element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     observer.observe(element);
+  });
+}
+
+/**
+ * Inicializa el manejo especial para enlaces de correo electrónico
+ * Detecta si es PC o móvil para abrir Gmail en PC o la app de correo en móvil
+ */
+function initEmailHandling() {
+  const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+  
+  emailLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      // Detectar si es dispositivo móvil
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (!isMobile) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        
+        // Extraer información del mailto
+        const mailtoInfo = href.substring(7); // Quitar "mailto:"
+        const parts = mailtoInfo.split('?');
+        const email = parts[0];
+        
+        // Analizar parámetros
+        let subject = '';
+        let body = '';
+        
+        if (parts.length > 1) {
+          const params = new URLSearchParams(parts[1]);
+          subject = params.get('subject') || '';
+          body = params.get('body') || '';
+        }
+        
+        // Construir URL para Gmail
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // Abrir Gmail en una nueva pestaña
+        window.open(gmailUrl, '_blank');
+      }
+      // En móvil, deja que el enlace mailto funcione normalmente
+    });
   });
 }
