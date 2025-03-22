@@ -1,6 +1,6 @@
 // Variables y configuración global
 let currentSlide = 0;
-const GITHUB_USERNAME = 'nicolascb'; // Cambia esto por tu nombre de usuario de GitHub
+const GITHUB_USERNAME = 'Nico2603'; // Cambia esto por tu nombre de usuario de GitHub
 const MAX_REPOS = 6; // Número máximo de repositorios a mostrar
 
 // Inicialización cuando el DOM está completamente cargado
