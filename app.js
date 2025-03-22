@@ -459,25 +459,115 @@ function initViewMoreRepos() {
   const reposContainer = document.getElementById('github-portfolio');
   
   if (viewMoreBtn && reposContainer) {
+    // Agregar listener para mostrar/ocultar repositorios
     viewMoreBtn.addEventListener('click', function() {
       if (!reposContainer.classList.contains('visible')) {
-        // Mostrar repositorios con animación
-        reposContainer.style.display = 'grid';
-        // Pequeño delay para asegurar que display:grid esté aplicado primero
-        setTimeout(() => {
-          reposContainer.classList.add('visible');
-        }, 10);
-        viewMoreBtn.textContent = 'Ocultar repositorios adicionales';
+        // Si los repos no están cargados aún, hacer la petición a la API
+        if (reposContainer.children.length === 0) {
+          // Mostrar loader mientras se cargan los repos
+          viewMoreBtn.innerHTML = '<span class="loading-spinner"></span> Cargando repositorios...';
+          viewMoreBtn.disabled = true;
+          
+          // Cargar repositorios desde GitHub
+          loadRepositories();
+        } else {
+          // Si ya están cargados, solo mostrarlos
+          showRepositories();
+        }
       } else {
         // Ocultar repositorios con animación
-        reposContainer.classList.remove('visible');
-        // Esperar a que termine la animación antes de ocultarlo completamente
-        setTimeout(() => {
-          reposContainer.style.display = 'none';
-        }, 400); // Tiempo igual a la duración de la transición de opacidad
-        viewMoreBtn.textContent = 'Ver todos los repositorios';
+        hideRepositories();
       }
     });
+    
+    // Función para cargar repositorios desde la API
+    function loadRepositories() {
+      const username = "Nico2603"; // Nombre de usuario de GitHub
+      const apiURL = `https://api.github.com/users/${username}/repos`;
+      const mainProjects = ['ChatBot-MentalHealth', 'PdM-Manager', 'FastQA-HomePage', 'magiacafetera-ui'];
+      
+      fetch(apiURL)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Error al obtener repositorios');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Filtrar para no incluir los proyectos principales
+          const otherRepos = data.filter(repo => !mainProjects.includes(repo.name));
+          
+          // Limpiar contenedor
+          reposContainer.innerHTML = '';
+          
+          // Crear tarjetas para cada repositorio
+          otherRepos.forEach((repo, index) => {
+            const repoDiv = document.createElement("div");
+            repoDiv.classList.add("repo");
+            repoDiv.style.setProperty('--item-index', index);
+            
+            // Crear el HTML para el repositorio
+            repoDiv.innerHTML = `
+              <h3><a href="${repo.html_url}" target="_blank" rel="noopener">${repo.name}</a></h3>
+              <p>${repo.description || "Repositorio de código en GitHub."}</p>
+              <div class="repo-meta">
+                <span class="repo-language">${repo.language || 'N/A'}</span>
+                <span class="repo-stars">⭐ ${repo.stargazers_count}</span>
+                <span class="repo-forks">🍴 ${repo.forks_count}</span>
+              </div>
+              <a href="${repo.html_url}" class="repo-link" target="_blank" rel="noopener">Ver en GitHub <i class="fas fa-external-link-alt"></i></a>
+            `;
+            
+            // Agregar al contenedor
+            reposContainer.appendChild(repoDiv);
+          });
+          
+          // Mostrar los repositorios
+          showRepositories();
+        })
+        .catch(error => {
+          console.error("Error al cargar repositorios:", error);
+          reposContainer.innerHTML = `
+            <div class="error-message">
+              <p>No se pudieron cargar los repositorios. Intente más tarde.</p>
+            </div>
+          `;
+          showRepositories();
+        })
+        .finally(() => {
+          // Restaurar el botón
+          viewMoreBtn.innerHTML = 'Ocultar repositorios adicionales';
+          viewMoreBtn.disabled = false;
+        });
+    }
+    
+    // Función para mostrar los repositorios con animación
+    function showRepositories() {
+      // Mostrar el contenedor
+      reposContainer.style.display = 'grid';
+      
+      // Aplicar clase para la animación después de un pequeño retraso
+      setTimeout(() => {
+        reposContainer.classList.add('visible');
+      }, 10);
+      
+      // Cambiar texto del botón
+      viewMoreBtn.textContent = 'Ocultar repositorios adicionales';
+    }
+    
+    // Función para ocultar los repositorios con animación
+    function hideRepositories() {
+      // Remover clase para iniciar la animación de salida
+      reposContainer.classList.remove('visible');
+      
+      // Ocultar completamente después de que termine la animación
+      setTimeout(() => {
+        reposContainer.style.display = 'none';
+      }, 400);
+      
+      // Cambiar texto del botón
+      viewMoreBtn.textContent = 'Ver todos los repositorios';
+    }
   }
 }
 
@@ -648,5 +738,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
+  }
+});
+
+// Mejorar la funcionalidad del menú hamburguesa
+document.addEventListener('DOMContentLoaded', function() {
+  // Obtener elementos del DOM
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  
+  if (menuToggle && navMenu) {
+    // Crear estructura de hamburguesa si no existe
+    if (menuToggle.children.length === 0) {
+      menuToggle.innerHTML = `
+        <span></span>
+        <span></span>
+        <span></span>
+      `;
+    }
+    
+    // Toggle del menú al hacer clic en el botón hamburguesa
+    menuToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Toggle de clases para animaciones
+      this.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+      
+      // Animar los elementos del menú con retraso
+      const items = navMenu.querySelectorAll('.nav-item');
+      items.forEach((item, index) => {
+        item.style.setProperty('--item-index', index);
+      });
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        // Solo si estamos en móvil
+        if (window.innerWidth <= 768) {
+          setTimeout(() => {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+          }, 100);
+        }
+      });
+    });
+    
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function(e) {
+      // Solo si el menú está abierto y se hace clic fuera del menú y el botón
+      if (navMenu.classList.contains('active') && 
+          !navMenu.contains(e.target) && 
+          !menuToggle.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      }
+    });
   }
 });
