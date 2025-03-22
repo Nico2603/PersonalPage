@@ -175,28 +175,30 @@ document.addEventListener('DOMContentLoaded', function() {
       carouselContainers.forEach(container => {
         if (isSmallScreen) {
           // En móvil, asegurar que haya espacio suficiente para el contenido
-          container.style.minHeight = isMobile ? '480px' : '480px';
+          container.style.minHeight = isMobile ? '520px' : '480px';
           
           // Ajustar la altura del contenido de texto
           const contentElements = container.querySelectorAll('.carousel-content');
           contentElements.forEach(content => {
             // En móvil, dar mucho más espacio al contenido
-            content.style.minHeight = isMobile ? '300px' : '230px';
-            content.style.maxHeight = isMobile ? '300px' : '230px';
+            content.style.minHeight = isMobile ? '320px' : '230px';
+            content.style.maxHeight = isMobile ? '320px' : '230px';
             
             // Asegurar que los botones sean visibles
             const buttons = content.querySelectorAll('.u-btn-1');
             buttons.forEach(button => {
               if (isMobile) {
-                button.style.display = 'block';
-                button.style.margin = '15px auto 5px';
+                button.style.display = 'inline-block';
+                button.style.margin = '20px auto 10px';
                 button.style.position = 'relative';
                 button.style.zIndex = '10';
+                button.style.padding = '8px 20px';
               } else {
                 button.style.display = '';
                 button.style.margin = '';
                 button.style.position = '';
                 button.style.zIndex = '';
+                button.style.padding = '';
               }
             });
           });
@@ -215,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
               button.style.margin = '';
               button.style.position = '';
               button.style.zIndex = '';
+              button.style.padding = '';
             });
           });
         }
@@ -226,9 +229,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const lastSection = document.querySelector('.u-section-4');
         
         if (footer && lastSection) {
-          lastSection.style.paddingBottom = '100px';
-          footer.style.marginTop = '60px';
+          lastSection.style.paddingBottom = '40px'; // Reducir el espacio
+          footer.style.marginTop = '10px';
         }
+      }
+      
+      // Asegurar que la primera sección esté pegada al navbar
+      const firstSection = document.querySelector('.u-section-1');
+      if (firstSection) {
+        firstSection.style.paddingTop = isSmallScreen ? '50px' : '60px';
+        firstSection.style.marginTop = '0';
       }
     }
     
