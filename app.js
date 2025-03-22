@@ -480,3 +480,173 @@ function initViewMoreRepos() {
     });
   }
 }
+
+// Funciones para la experiencia móvil moderna
+document.addEventListener('DOMContentLoaded', function() {
+  // Referencias a elementos
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  const body = document.body;
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  // Asignar índices a los items para transiciones escalonadas
+  navItems.forEach((item, index) => {
+    item.style.setProperty('--item-index', index);
+  });
+  
+  // Toggle del menú
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      body.classList.toggle('menu-open');
+    });
+  }
+  
+  // Cerrar menú al hacer click en un enlace
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      if (menuToggle) {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });
+  });
+  
+  // Animación al scroll
+  const fadeElements = document.querySelectorAll('.u-text-1, .u-text-2, .carousel-container, .project-card, .social-icons-presentation a, .social-icons-contact a');
+  fadeElements.forEach(el => {
+    el.classList.add('fade-in-element');
+  });
+  
+  // Observer para detectar elementos en viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  // Observar todos los elementos
+  fadeElements.forEach(el => {
+    observer.observe(el);
+  });
+  
+  // Transición entre páginas
+  const pageTransition = document.createElement('div');
+  pageTransition.className = 'page-transition';
+  pageTransition.innerHTML = '<span class="loader"></span>';
+  document.body.appendChild(pageTransition);
+  
+  // Mostrar transición al cambiar de página
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId !== '#' && document.querySelector(targetId)) {
+        e.preventDefault();
+        pageTransition.classList.add('active');
+        
+        setTimeout(() => {
+          window.location.hash = targetId;
+          pageTransition.classList.remove('active');
+          
+          // Scroll suave a la sección
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70, // Ajustar para compensar navbar
+              behavior: 'smooth'
+            });
+          }
+        }, 500);
+      }
+    });
+  });
+  
+  // Detectar scroll para aplicar efectos al navbar
+  let lastScrollTop = 0;
+  window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const header = document.querySelector('header#main-header');
+    
+    if (header) {
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        // Scroll hacia abajo - ocultar navbar
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        // Scroll hacia arriba o inicio - mostrar navbar
+        header.style.transform = 'translateY(0)';
+      }
+      
+      // Cambiar apariencia al hacer scroll
+      if (currentScroll > 50) {
+        header.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.1)';
+        header.style.height = '50px';
+      } else {
+        header.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.08)';
+        header.style.height = '60px';
+      }
+      
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }
+  }, { passive: true });
+  
+  // Efecto de ripple para botones
+  const buttons = document.querySelectorAll('.u-btn-1, .view-more-btn, .carousel-content .u-btn-1');
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple-effect';
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  });
+  
+  // Inicializar carrusel con scroll unificado si estamos en móvil
+  if (window.innerWidth <= 768) {
+    unifyCarouselScroll();
+  }
+  
+  // Mantener el scroll unificado al cambiar el tamaño de la ventana
+  window.addEventListener('resize', function() {
+    if (window.innerWidth <= 768) {
+      unifyCarouselScroll();
+    }
+  });
+  
+  function unifyCarouselScroll() {
+    // Asegurar que todos los elementos del carrusel sean visibles
+    const carouselSlides = document.querySelectorAll('.carousel-slide');
+    const carouselContainer = document.querySelector('.carousel-container');
+    
+    if (carouselContainer && carouselSlides.length > 0) {
+      // Ajustar altura del contenedor para mostrar solo el slide activo
+      carouselContainer.style.height = 'auto';
+      
+      // Mostrar solo el slide activo y ocultar los demás
+      carouselSlides.forEach(slide => {
+        if (slide.classList.contains('active')) {
+          slide.style.display = 'block';
+          slide.style.position = 'relative';
+          slide.style.opacity = '1';
+        } else {
+          slide.style.display = 'none';
+        }
+      });
+    }
+  }
+});
