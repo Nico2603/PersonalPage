@@ -500,6 +500,16 @@ function initViewMoreRepos() {
           // Limpiar contenedor
           reposContainer.innerHTML = '';
           
+          if (otherRepos.length === 0) {
+            reposContainer.innerHTML = `
+              <div class="error-message">
+                <p>No se encontraron repositorios adicionales.</p>
+              </div>
+            `;
+            showRepositories();
+            return;
+          }
+          
           // Crear tarjetas para cada repositorio
           otherRepos.forEach((repo, index) => {
             const repoDiv = document.createElement("div");
@@ -530,6 +540,7 @@ function initViewMoreRepos() {
           reposContainer.innerHTML = `
             <div class="error-message">
               <p>No se pudieron cargar los repositorios. Intente más tarde.</p>
+              <p>Error: ${error.message}</p>
             </div>
           `;
           showRepositories();
@@ -741,7 +752,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Mejorar la funcionalidad del menú hamburguesa
+// Modificar el manejo de clics en dropdowns para primero abrir el menú y luego navegar
 document.addEventListener('DOMContentLoaded', function() {
   // Obtener elementos del DOM
   const menuToggle = document.querySelector('.mobile-menu-toggle');
@@ -766,24 +777,61 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.toggle('active');
       navMenu.classList.toggle('active');
       document.body.classList.toggle('menu-open');
-      
-      // Animar los elementos del menú con retraso
-      const items = navMenu.querySelectorAll('.nav-item');
-      items.forEach((item, index) => {
-        item.style.setProperty('--item-index', index);
-      });
     });
     
-    // Cerrar menú al hacer clic en un enlace
-    navMenu.querySelectorAll('.nav-link').forEach(link => {
+    // Manejar dropdowns en móvil de manera diferente
+    const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+    dropdownItems.forEach(item => {
+      const link = item.querySelector('.nav-link');
+      const dropdownContent = item.querySelector('.dropdown-content');
+      
+      // Prevenir navegación en dropdowns en móvil
+      link.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Cerrar otros dropdowns
+          dropdownItems.forEach(otherItem => {
+            if (otherItem !== item && otherItem.classList.contains('active')) {
+              otherItem.classList.remove('active');
+            }
+          });
+          
+          // Alternar el dropdown actual
+          item.classList.toggle('active');
+        }
+      });
+      
+      // En escritorio, mantener comportamiento normal (hover)
+      if (dropdownContent) {
+        // Asegurarnos de que los enlaces dentro del dropdown SÍ naveguen
+        const dropdownLinks = dropdownContent.querySelectorAll('a');
+        dropdownLinks.forEach(dropLink => {
+          dropLink.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+              // Cerrar menú al hacer clic en un enlace del dropdown
+              setTimeout(() => {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                item.classList.remove('active');
+                document.body.classList.remove('menu-open');
+              }, 300);
+            }
+          });
+        });
+      }
+    });
+    
+    // Cerrar menú al hacer clic en enlaces directos (no dropdown)
+    document.querySelectorAll('.nav-item:not(.dropdown) .nav-link').forEach(link => {
       link.addEventListener('click', function() {
-        // Solo si estamos en móvil
         if (window.innerWidth <= 768) {
           setTimeout(() => {
-            menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
             document.body.classList.remove('menu-open');
-          }, 100);
+          }, 300);
         }
       });
     });
@@ -797,6 +845,11 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.classList.remove('menu-open');
+        
+        // También cerrar dropdowns activos
+        dropdownItems.forEach(item => {
+          item.classList.remove('active');
+        });
       }
     });
   }
